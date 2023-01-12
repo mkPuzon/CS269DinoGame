@@ -1,4 +1,4 @@
-'''Use masks and has highest score tracker'''
+'''Defult dino game '''
 
 import pygame, random
 from v2Classes import *
@@ -123,6 +123,7 @@ def menu(death_count,high_score):
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     main(high_score)
+
 
 
 menu(death_count=0, high_score=0)
