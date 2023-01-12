@@ -11,7 +11,7 @@ SCREEN = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
 all_sprites = pygame.sprite.Group()
 
 def main(high_score):
-    global x_pos_bg, y_pos_bg, y_pos_backdrop, points, game_speed, obstacles
+    global x_pos_bg, y_pos_bg, y_pos_backdrop, x_pos_backdrop, points, game_speed, obstacles
     run = True
     clock = pygame.time.Clock()
     player = Dinosaur(all_sprites)
@@ -19,6 +19,7 @@ def main(high_score):
     game_speed = 14
     x_pos_bg = 0
     y_pos_bg = 380          # vertical position of background (ground)
+    x_pos_backdrop = 0
     y_pos_backdrop = -155   # vertical offset for backdrop image
     points = 0
     font = pygame.font.Font('Assets/ARCADECLASSIC.TTF', 30)
@@ -55,15 +56,15 @@ def main(high_score):
 
     def backdrop():
         '''moves image behind all sprites'''
-        global x_pos_bg, y_pos_backdrop
+        global x_pos_backdrop, y_pos_backdrop
         BACKDROP.convert()
         image_width = BACKDROP.get_width()
-        SCREEN.blit(BACKDROP, (x_pos_bg, y_pos_backdrop))
-        SCREEN.blit(BACKDROP, (image_width + x_pos_bg, y_pos_backdrop))
-        if x_pos_bg <= -image_width:
-            SCREEN.blit(BACKDROP, (image_width + x_pos_bg, y_pos_backdrop))
-            x_pos_bg = 0
-        x_pos_bg -= game_speed*0.4
+        SCREEN.blit(BACKDROP, (x_pos_backdrop, y_pos_backdrop))
+        SCREEN.blit(BACKDROP, (image_width + x_pos_backdrop, y_pos_backdrop))
+        if x_pos_backdrop <= -image_width:
+            SCREEN.blit(BACKDROP, (image_width + x_pos_backdrop, y_pos_backdrop))
+            x_pos_backdrop = 0
+        x_pos_backdrop -= (game_speed * 0.1)
 
     while run:
         for event in pygame.event.get():
