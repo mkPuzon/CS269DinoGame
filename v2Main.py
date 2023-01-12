@@ -6,18 +6,20 @@ from v2Constants import *
 
 pygame.init()
 SCREEN = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
+# SCREEN = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT), pygame.FULLSCREEN) # Fullscreen mode for mac users
 
 all_sprites = pygame.sprite.Group()
 
 def main(high_score):
-    global x_pos_bg, y_pos_bg, points, game_speed, obstacles
+    global x_pos_bg, y_pos_bg, y_pos_backdrop, points, game_speed, obstacles
     run = True
     clock = pygame.time.Clock()
     player = Dinosaur(all_sprites)
     cloud = Cloud()
     game_speed = 14
     x_pos_bg = 0
-    y_pos_bg = 380
+    y_pos_bg = 380          # vertical position of background (ground)
+    y_pos_backdrop = -155   # vertical offset for backdrop image
     points = 0
     font = pygame.font.Font('Assets/ARCADECLASSIC.TTF', 30)
     obstacles = []
@@ -40,7 +42,9 @@ def main(high_score):
         SCREEN.blit(h_text, h_text_rect)
 
     def background():
+        '''moves ground image'''
         global x_pos_bg, y_pos_bg
+        BG.convert_alpha()
         image_width = BG.get_width()
         SCREEN.blit(BG, (x_pos_bg, y_pos_bg))
         SCREEN.blit(BG, (image_width + x_pos_bg, y_pos_bg))
@@ -49,6 +53,18 @@ def main(high_score):
             x_pos_bg = 0
         x_pos_bg -= game_speed
 
+    def backdrop():
+        '''moves image behind all sprites'''
+        global x_pos_bg, y_pos_backdrop
+        BACKDROP.convert()
+        image_width = BACKDROP.get_width()
+        SCREEN.blit(BACKDROP, (x_pos_bg, y_pos_backdrop))
+        SCREEN.blit(BACKDROP, (image_width + x_pos_bg, y_pos_backdrop))
+        if x_pos_bg <= -image_width:
+            SCREEN.blit(BACKDROP, (image_width + x_pos_bg, y_pos_backdrop))
+            x_pos_bg = 0
+        x_pos_bg -= game_speed*0.4
+
     while run:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -56,6 +72,9 @@ def main(high_score):
 
         SCREEN.fill('white')
         userInput = pygame.key.get_pressed()
+
+        backdrop()
+        background()
 
         player.draw(SCREEN)
         player.update(userInput)
@@ -75,9 +94,8 @@ def main(high_score):
                 pygame.time.delay(2000)
                 death_count += 1
                 menu(death_count,high_score)
-        
-        background()
 
+        
         cloud.draw(SCREEN)
         cloud.update(game_speed)
 
@@ -120,6 +138,10 @@ def menu(death_count,high_score):
             if event.type == pygame.QUIT:
                 run = False
                 pygame.quit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_q:
+                    run = False
+                    pygame.quit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     main(high_score)
