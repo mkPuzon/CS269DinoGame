@@ -107,7 +107,7 @@ class GroundObstacle(pygame.sprite.Sprite):
 
 class FlyingObstacle(pygame.sprite.Sprite):
     X_POS = SCREEN_W + 100
-    Y_POS = GROUND_LOCATION - 70
+    Y_POS = GROUND_LOCATION - 8
 
     def __init__(self,image, groups):
         super().__init__(groups)
@@ -116,6 +116,7 @@ class FlyingObstacle(pygame.sprite.Sprite):
         self.rect.y = self.Y_POS
         self.rect.x = self.X_POS
         self.mask = pygame.mask.from_surface(self.image[0])
+        self.index = 0
 
     def update(self,game_speed):
         self.rect.x -= game_speed

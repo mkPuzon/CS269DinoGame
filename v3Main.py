@@ -103,7 +103,7 @@ def level_loop(high_score):
             obstacle.draw(SCREEN)
             # check collisions
             overlap_area = player.mask.overlap_area(obstacle.mask, (obstacle.rect.x - player.rect.x, obstacle.rect.y - player.rect.y))
-            if overlap_area > 150:
+            if overlap_area > 30:
                 death_count += 1
                 pygame.time.delay(2000)
                 menu(death_count,high_score)
