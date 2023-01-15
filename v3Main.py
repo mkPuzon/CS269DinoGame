@@ -32,7 +32,7 @@ def level_loop(high_score):
     x_pos_bg = 0
     y_pos_bg = GROUND_LOCATION + 100
     x_pos_backdrop = 0
-    y_pos_backdrop = -135  # may have to mess with this one depending on image
+    y_pos_backdrop = 115
     font = pygame.font.Font('Assets/ARCADECLASSIC.TTF', 30)
     
     # SHOW_MASKS = True   # for testing collisions
@@ -57,7 +57,7 @@ def level_loop(high_score):
         if x_pos_backdrop <= -image_width:
             SCREEN.blit(backdrop_img, (image_width + x_pos_backdrop, y_pos_backdrop))
             x_pos_backdrop = 0
-        x_pos_backdrop -= (game_speed * 0.8)
+        x_pos_backdrop -= (game_speed * 0.3)
 
     def score():
         global points, game_speed
@@ -103,10 +103,14 @@ def level_loop(high_score):
             obstacle.draw(SCREEN)
             # check collisions
             overlap_area = player.mask.overlap_area(obstacle.mask, (obstacle.rect.x - player.rect.x, obstacle.rect.y - player.rect.y))
-            if overlap_area > 30:
+            # print(overlap_area)
+            if 30 < overlap_area:
                 death_count += 1
                 pygame.time.delay(2000)
+                for obstacle in obstacle_group:
+                    obstacle.kill()
                 menu(death_count,high_score)
+
 
         if len(obstacle_group) == 0:
             if randint(0,2) == 0:

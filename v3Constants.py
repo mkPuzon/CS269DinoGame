@@ -23,8 +23,8 @@ LARGE_OBST = [pygame.image.load("Assets/Cactus/tallCactus.png"),
 FLYING_OBST = [pygame.image.load("Assets/Bird/bird1.png"),
         pygame.image.load("Assets/Bird/bird2.png")]
 CLOUD = pygame.image.load("Assets/Other/Cloud.png")
-GROUND = pygame.image.load("Assets/Other/Track.png")
-BACKDROP = pygame.image.load("Assets/Other/Backdrop.png")
+GROUND = pygame.image.load("Assets/Other/TrackFilled.png")
+BACKDROP = pygame.image.load("Assets/Other/defultBackdrop.png")
 
 
 # # Import assets for level 2 (WWI)

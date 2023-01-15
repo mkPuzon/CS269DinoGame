@@ -1,6 +1,7 @@
 '''Classes for v3 of dino game'''
 import pygame
 from v3Constants import *
+from random import randint
 
 class Player(pygame.sprite.Sprite):
     # player constants
@@ -106,7 +107,7 @@ class GroundObstacle(pygame.sprite.Sprite):
         SCREEN.blit(self.image,self.rect)
 
 class FlyingObstacle(pygame.sprite.Sprite):
-    X_POS = SCREEN_W + 100
+    X_POS = SCREEN_W + randint(0,500)
     Y_POS = GROUND_LOCATION - 8
 
     def __init__(self,image, groups):
