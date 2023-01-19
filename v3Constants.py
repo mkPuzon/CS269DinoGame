@@ -33,7 +33,8 @@ JUMPING1 = pygame.image.load("Assets/Dino/westernJump.png")
 DUCKING1 = [pygame.image.load("Assets/Dino/westernDuck1.png"),
            pygame.image.load("Assets/Dino/westernDuck2.png")]
 DEAD1 = pygame.image.load("Assets/Dino/westernDead.png")
-ITEM1 = pygame.image.load("Assets/Other/Revolver.png")
+ITEM1 = [pygame.image.load("Assets/Other/revolver.png"),pygame.image.load("Assets/Other/revolverShooting.png")]
+
 SMALL_OBST1 = [pygame.image.load("Assets/GroundObst/Tumbleweed.png"),
                 pygame.image.load("Assets/GroundObst/Tumbleweed2.png"),
                 pygame.image.load("Assets/GroundObst/Tumbleweed.png")]
@@ -76,13 +77,20 @@ BACKDROP2 = pygame.image.load("Assets/Other/ww1Backdrop.png")
 # SMALL_OBST3 = [pygame.image.load("Assets/GroundObst/.png"),
 #                 pygame.image.load("Assets/GroundObst/.png"),
 #                 pygame.image.load("Assets/GroundObst/.png")]
-# LARGE_OBST3 = [pygame.image.load("Assets/GroundObst/Stormtrooper.png"),
-#                 pygame.image.load("Assets/GroundObst/Stormtrooper.png"),
-#                 pygame.image.load("Assets/GroundObst/StormtrooperWithGun.png")]
-# FLYING_OBST3 = [pygame.image.load("Assets/FlyingObst/MilleniumFalcon.png"),
-#         pygame.image.load("Assets/FlyingObst/.png")]
+
+RUNNING3 = [pygame.image.load("Assets/Dino/defaultRun1.png"),
+           pygame.image.load(("Assets/Dino/defaultRun2.png"))]
+JUMPING3 = pygame.image.load("Assets/Dino/defaultJump.png")
+DUCKING3 = [pygame.image.load("Assets/Dino/defaultDuck1.png"),
+           pygame.image.load("Assets/Dino/defaultDuck2.png")]
+DEAD3 = pygame.image.load("Assets/Dino/defaultDead.png")
+
+LARGE_OBST3 = [pygame.image.load("Assets/GroundObst/Stormtrooper.png"),
+                pygame.image.load("Assets/GroundObst/Stormtrooper.png"),
+                pygame.image.load("Assets/GroundObst/StormtrooperWithGun.png")]
+FLYING_OBST3 = pygame.image.load("Assets/FlyingObst/MilleniumFalcon.png")
 # GRAPHICS3 = pygame.image.load("Assets/Other/.png")
-# GROUND3 = pygame.image.load("Assets/Other/starWarsTrack.png")
-# BACKDROP3 = pygame.image.load("Assets/Other/starWarsBackdrop.png")
+GROUND3 = pygame.image.load("Assets/Other/starWarsTrack.png")
+BACKDROP3 = pygame.image.load("Assets/Other/starWarsBackdrop.png")
 
 # # Import assets for final boss/ boss fights
