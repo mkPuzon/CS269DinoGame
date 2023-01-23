@@ -7,6 +7,10 @@ SCREEN_H = 600
 
 GROUND_LOCATION = 300
 
+#Menu Assets
+BUTTON1 = pygame.image.load("Assets/Buttons/button_one.png")
+CURSOR = pygame.image.load("Assets/cursor.png")
+
 # Import assets for level 0 (defult)
 RUNNING = [pygame.image.load("Assets/Dino/defaultRun1.png"),
            pygame.image.load(("Assets/Dino/defaultRun2.png"))]

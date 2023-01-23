@@ -1,4 +1,3 @@
-'''currently has 2 levels (defult and WWI). Still needs assets for dino and small obstacles for level 2.'''
 
 import pygame
 from sys import exit
@@ -15,7 +14,35 @@ def get_screen(fullscreen=False):
     else: 
         SCREEN = pygame.display.set_mode((SCREEN_W,SCREEN_H), pygame.FULLSCREEN)
     return SCREEN
-    
+
+def process_events():
+    '''Processes every Keystroke for the game, all inputs should be processed here'''
+    for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    pygame.quit()
+                    exit()
+                if event.key == pygame.K_TAB:
+                    setPrevState(game_state)
+                    setGameState("pause")
+                if(event.key == pygame.K_m):
+                    setGameState("menu")
+
+            
+def setGameState(newstate):
+    '''Takes in a string as a parameter, and sets the gamestate function to "newstate" valid states are defined the the main while loop'''
+    global game_state
+    game_state = newstate
+
+def setPrevState(prev):
+    global prev_game_state
+    prev_game_state = prev
+
+game_state = "menu"  
+prev_game_state = ""
 SCREEN = get_screen(True)   # add 'full' for fullscreen mode
 pygame.display.set_caption('Dino Game v3')
 clock = pygame.time.Clock()
@@ -23,8 +50,7 @@ clock = pygame.time.Clock()
 player_group = pygame.sprite.Group()
 obstacle_group = pygame.sprite.Group()
 
-
-def level1_loop(high_score):
+def level1_loopV1(high_score):
     global x_pos_bg, y_pos_bg, x_pos_backdrop, y_pos_backdrop, points, game_speed
     player = Player_1(SCREEN, player_group)
     game_speed = 14
@@ -42,6 +68,7 @@ def level1_loop(high_score):
         global x_pos_bg, y_pos_bg
         ground_img = GROUND.convert_alpha()
         image_width = ground_img.get_width()
+        #render stuff
         SCREEN.blit(ground_img, (x_pos_bg, y_pos_bg))
         SCREEN.blit(ground_img, (x_pos_bg + image_width, y_pos_bg))
         if x_pos_bg <= -image_width:
@@ -109,7 +136,7 @@ def level1_loop(high_score):
                 pygame.time.delay(2000)
                 for obstacle in obstacle_group:
                     obstacle.kill()
-                menu(death_count,high_score)
+                menuV0(death_count,high_score)
 
 
         if len(obstacle_group) == 0:
@@ -234,7 +261,7 @@ def level2_loop(high_score, score, game_speed): # WWI
         clock.tick(30)
         pygame.display.update()
 
-def menu(death_count,high_score):
+def menuV0(death_count,high_score):
     global points
 
     while True:
@@ -262,16 +289,73 @@ def menu(death_count,high_score):
         text_rect.center = (SCREEN_W //2, SCREEN_H // 2)
         SCREEN.blit(text, text_rect)
         pygame.display.update()
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                exit()
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_q:
-                    pygame.quit()
-                    exit()
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_SPACE:
-                    level1_loop(high_score)
+        
+def menu():
+    SCREEN.fill('white')
+    font = pygame.font.Font('Assets/ARCADECLASSIC.TTF', 30)
+    text = font.render("Press ESC to Quit   Press Tab To Pause", True, (0,0,0))
+    text_rect = text.get_rect()
+    text_rect.center = (SCREEN_W //2, SCREEN_H // 8)
+    SCREEN.blit(text, text_rect)
+    
+    
+    level_1_button = Button(SCREEN_W //2 + SCREEN_W//4, SCREEN_H // 2,100,100,"1")
+    level_2_button = Button(SCREEN_W //2 - SCREEN_W//4,SCREEN_H//2,100,100,"2")
+    
+    if(level_1_button.draw_button(SCREEN)):
+        setGameState("one")
+    if(level_2_button.draw_button(SCREEN)):
+        setGameState("two")
 
-menu(death_count=0,high_score=0)
+
+def lvl_1():
+    SCREEN.fill('white')
+    font = pygame.font.Font('Assets/ARCADECLASSIC.TTF', 30)
+    text = font.render("You have Reached Level 1", True, (0,0,0))
+    text_rect = text.get_rect()
+    text_rect.center = (SCREEN_W //2, SCREEN_H // 8)
+    SCREEN.blit(text, text_rect)
+    
+def lvl_2():
+    SCREEN.fill('white')
+    font = pygame.font.Font('Assets/ARCADECLASSIC.TTF', 30)
+    text = font.render("You have Reached Level 2", True, (0,0,0))
+    text_rect = text.get_rect()
+    text_rect.center = (SCREEN_W //2, SCREEN_H // 8)
+    SCREEN.blit(text, text_rect)
+
+def pause(prev_state):
+    SCREEN.fill('white')
+    font = pygame.font.Font('Assets/ARCADECLASSIC.TTF', 30)
+    text = font.render("Pause   Menu", True, (0,0,0))
+    text_rect = text.get_rect()
+    text_rect.center = (SCREEN_W //2, SCREEN_H // 8)
+    SCREEN.blit(text, text_rect)
+
+    resume_button = Button(SCREEN_W//2 - 100,SCREEN_H//6,200,100,"R E S U M E")
+    menu_button = Button(SCREEN_W//2-100,SCREEN_H//2,200,100,"M E N U")
+    if(resume_button.draw_button(SCREEN)):
+        setGameState(prev_state)
+    if(menu_button.draw_button(SCREEN)):
+        setGameState("menu")
+    
+
+
+#Main Game loop to run
+while True:
+
+    #processing the user inputs
+    process_events()
+
+    #checking for the game state
+    if(game_state == "menu"):
+        menu()
+    if(game_state == "one"):
+        lvl_1()
+    if(game_state == "two"):
+        lvl_2()
+    if(game_state == "pause"):
+        pause(prev_game_state)
+
+    clock.tick(30)
+    pygame.display.update()

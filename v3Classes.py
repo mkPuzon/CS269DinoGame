@@ -9,14 +9,13 @@ class Player_1(pygame.sprite.Sprite):
     Y_POS = GROUND_LOCATION
     JUMP_VEL = 8.5
 
-    def __init__(self, SCREEN, groups):
+    def __init__(self, groups):
         super().__init__(groups)
         self.image = JUMPING.convert_alpha()
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.rect.x = self.X_POS
         self.rect.y = self.Y_POS
-        self.SCREEN = SCREEN
 
         self.jump_cooldown = 0
         self.step_index = 0
@@ -31,15 +30,19 @@ class Player_1(pygame.sprite.Sprite):
         self.jump_img = JUMPING
         self.dead_img = DEAD
 
-
-    def update(self,user_input):
-
+    def render_player(self,display):
         if self.dino_duck:
             self.duck()
         if self.dino_run:
             self.run()
         if self.dino_jump:
             self.jump()
+        
+        display.blit(self.image, self.rect)
+    
+    
+
+    def update(self,actions):
 
         if self.jump_cooldown != 0:
             self.jump_cooldown -= 1
@@ -47,15 +50,15 @@ class Player_1(pygame.sprite.Sprite):
         if self.step_index >= 10:
             self.step_index = 0
 
-        if user_input[pygame.K_UP] and not self.dino_jump and self.jump_cooldown == 0:
+        if actions['up'] and not self.dino_jump and self.jump_cooldown == 0:
             self.dino_duck = False
             self.dino_run = False
             self.dino_jump = True
-        elif user_input[pygame.K_DOWN] and not self.dino_jump:
+        elif actions['down'] and not self.dino_jump:
             self.dino_duck = True
             self.dino_run = False
             self.dino_jump = False
-        elif not (self.dino_jump or user_input[pygame.K_DOWN]):
+        elif not (self.dino_jump or actions['down']):
             self.dino_duck = False
             self.dino_run = True
             self.dino_jump = False
@@ -88,8 +91,8 @@ class Player_1(pygame.sprite.Sprite):
             self.dino_jump = False
             self.jump_vel = self.JUMP_VEL
 
-    def draw(self,SCREEN):
-        SCREEN.blit(self.image, self.rect)
+    def draw(self,display):
+        display.blit(self.image, self.rect)
 
 class Player_2(pygame.sprite.Sprite):
     # player constants
@@ -468,4 +471,48 @@ class Item(pygame.sprite.Sprite):
 
     def draw(self,SCREEN):
         SCREEN.blit(self.image,self.rect)
+
+class Button():
+
+    basic_color = (30,80,200)
+    hover_color = (70,70,170)
+    
+
+    def __init__(self,x,y,width,height,text):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.text = text
+        self.clicked = False
+        
+    def draw_button(self,SCREEN):
+        # action = False
+        button_rect = pygame.Rect(self.x,self.y,self.width,self.height)
+
+        # if button_rect.collidepoint(pos):
+        #     pygame.draw.rect(SCREEN,self.hover_color,button_rect)
+            
+        #     if (pygame.mouse.get_pressed()[0]):
+        #         self.clicked = True
+            
+        #     if(self.clicked == True and pygame.mouse.get_pressed()[0] == False):
+        #             action = True
+        #             print("trigger")
+        #             self.clicked = False
+        #             return action       
+        # else:
+        
+        
+        pygame.draw.rect(SCREEN,self.basic_color,button_rect)
+        font = pygame.font.Font('Assets/ARCADECLASSIC.TTF', 30)
+        text = font.render(self.text, True, (255,255,255))
+        text_len = text.get_width()
+        SCREEN.blit(text,((self.x + int(self.width/2) - int(text_len / 2)), self.y + 25))
+        # return action
+
+    
+
+
+
 
