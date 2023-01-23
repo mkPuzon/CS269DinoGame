@@ -7,6 +7,8 @@ class Level_Three(State):
     def __init__(self, game):
         self.game = game
         State.__init__(self,game)
+        self.music = WWI_MUSIC
+        self.music.play(loops=-1)
 
         #points variable
         self.points = 0
@@ -79,7 +81,7 @@ class Level_Three(State):
                 new_obst = Mine2(SMALL_OBST2,self.obstacle_group)
             elif randint(0,2) == 1:
                 new_obst = GroundObstacle(LARGE_OBST2[randint(0,2)],self.obstacle_group)
-                new_obst2 = GroundObstacle(SMALL_OBST2[0],self.obstacle_group)
+                new_obst2 = GroundObstacle(SMALL_OBST2,self.obstacle_group)
                 new_obst2.rect.x = new_obst.X_POS + randint(400,1000)
             elif randint(0,2) == 2:
                 new_obst = FlyingObstacle2(FLYING_OBST2,self.obstacle_group)
@@ -87,7 +89,7 @@ class Level_Three(State):
                 new_obst2.rect.x = new_obst.X_POS + randint(400,1000)
             elif randint(0,1) == 1:
                 new_obst = FlyingObstacle2(FLYING_OBST2,self.obstacle_group)
-                new_obst2 = GroundObstacle(SMALL_OBST2[0],self.obstacle_group)
+                new_obst2 = GroundObstacle(SMALL_OBST2,self.obstacle_group)
                 new_obst2.rect.x = new_obst.X_POS + randint(300,2000)
 
     def update_obstacles(self,game_speed):

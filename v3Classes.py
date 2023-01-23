@@ -3,6 +3,7 @@ import pygame
 from v3Constants import *
 from random import randint
 
+
 class Player_0(pygame.sprite.Sprite):
     # player constants
     X_POS = 100
@@ -51,6 +52,7 @@ class Player_0(pygame.sprite.Sprite):
             self.step_index = 0
 
         if actions['up'] and not self.dino_jump and self.jump_cooldown == 0:
+            JUMP_SOUND.play()
             self.dino_duck = False
             self.dino_run = False
             self.dino_jump = True
@@ -143,6 +145,7 @@ class Player_1(pygame.sprite.Sprite):
             self.step_index = 0
 
         if actions['up'] and not self.dino_jump and self.jump_cooldown == 0:
+            JUMP_SOUND.play()
             self.dino_duck = False
             self.dino_run = False
             self.dino_jump = True
@@ -235,6 +238,7 @@ class Player_2(pygame.sprite.Sprite):
             self.step_index = 0
 
         if actions['up'] and not self.dino_jump and self.jump_cooldown == 0:
+            JUMP_SOUND.play()
             self.dino_duck = False
             self.dino_run = False
             self.dino_jump = True
@@ -327,6 +331,7 @@ class Player_3(pygame.sprite.Sprite):
             self.step_index = 0
 
         if actions['up'] and not self.dino_jump and self.jump_cooldown == 0:
+            JUMP_SOUND.play()
             self.dino_duck = False
             self.dino_run = False
             self.dino_jump = True

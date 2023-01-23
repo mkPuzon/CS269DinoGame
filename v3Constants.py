@@ -1,5 +1,6 @@
 '''File to hold constants and assets'''
 import pygame
+pygame.mixer.init()
 
 # Screen dimentions
 SCREEN_W = 1200
@@ -90,11 +91,6 @@ FLYING_OBST3 = pygame.image.load("Assets/FlyingObst/MilleniumFalcon.png")
 GROUND3 = pygame.image.load("Assets/Other/starWarsTrack.png")
 BACKDROP3 = pygame.image.load("Assets/Other/starWarsBackdrop.png")
 
-# Music
-# WWIMUSIC = pygame.mixer.Sound("Assets/Sound/ww1sound100bpm.mp3")
-
-# Import menu assets
-L1BUTTONS = [pygame.image.load("Assets/Menu/menuButton1.png"),pygame.image.load("Assets/Menu/menuButton1.png")]
-L2BUTTONS = [pygame.image.load("Assets/Menu/menuButton2.png"),pygame.image.load("Assets/Menu/menuButton2D.png")]
-L3BUTTONS = [pygame.image.load("Assets/Menu/menuButton3.png"),pygame.image.load("Assets/Menu/menuButton3D.png")]
-L4BUTTONS = [pygame.image.load("Assets/Menu/menuButton4.png"),pygame.image.load("Assets/Menu/menuButton4D.png")]
+# Import sound assets
+JUMP_SOUND = pygame.mixer.Sound("Assets/Sound/jump0.wav")
+WWI_MUSIC = pygame.mixer.Sound("Assets/Sound/ww1sound100bpm.wav")
