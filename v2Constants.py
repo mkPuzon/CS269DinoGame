@@ -24,6 +24,7 @@ BG = pygame.image.load(os.path.join("Assets/Other", "Track.png"))
 BACKDROP = pygame.image.load(os.path.join("Assets/Other", "Backdrop.png"))
 
 
+
 # # Import assets for level 2 (WWI)
 # RUNNING2 = [pygame.image.load(os.path.join("Assets/", "")),
 #            pygame.image.load(os.path.join("Assets/", """))]

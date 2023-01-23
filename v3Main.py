@@ -9,14 +9,14 @@ from random import randint
 pygame.init()
 
 
-def get_screen(fullscreen=None):
-    if fullscreen == None:
+def get_screen(fullscreen=False):
+    if fullscreen == False:
         SCREEN = pygame.display.set_mode((SCREEN_W,SCREEN_H))
     else: 
         SCREEN = pygame.display.set_mode((SCREEN_W,SCREEN_H), pygame.FULLSCREEN)
     return SCREEN
     
-SCREEN = get_screen()   # add 'full' for fullscreen mode
+SCREEN = get_screen(True)   # add 'full' for fullscreen mode
 pygame.display.set_caption('Dino Game v3')
 clock = pygame.time.Clock()
 
