@@ -100,14 +100,13 @@ class Player_1(pygame.sprite.Sprite):
     Y_POS = GROUND_LOCATION
     JUMP_VEL = 8.5
 
-    def __init__(self, SCREEN, groups):
+    def __init__(self, groups):
         super().__init__(groups)
         self.image = JUMPING1.convert_alpha()
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.rect.x = self.X_POS
         self.rect.y = self.Y_POS
-        self.SCREEN = SCREEN
 
         self.jump_cooldown = 0
         self.step_index = 0
@@ -123,14 +122,19 @@ class Player_1(pygame.sprite.Sprite):
         self.dead_img = DEAD1
 
 
-    def update(self,user_input):
-
+    def render_player(self,display):
         if self.dino_duck:
             self.duck()
         if self.dino_run:
             self.run()
         if self.dino_jump:
             self.jump()
+        
+        display.blit(self.image, self.rect)
+    
+    
+
+    def update(self,actions):
 
         if self.jump_cooldown != 0:
             self.jump_cooldown -= 1
@@ -138,15 +142,15 @@ class Player_1(pygame.sprite.Sprite):
         if self.step_index >= 10:
             self.step_index = 0
 
-        if user_input[pygame.K_UP] and not self.dino_jump and self.jump_cooldown == 0:
+        if actions['up'] and not self.dino_jump and self.jump_cooldown == 0:
             self.dino_duck = False
             self.dino_run = False
             self.dino_jump = True
-        elif user_input[pygame.K_DOWN] and not self.dino_jump:
+        elif actions['down'] and not self.dino_jump:
             self.dino_duck = True
             self.dino_run = False
             self.dino_jump = False
-        elif not (self.dino_jump or user_input[pygame.K_DOWN]):
+        elif not (self.dino_jump or actions['down']):
             self.dino_duck = False
             self.dino_run = True
             self.dino_jump = False
@@ -188,14 +192,13 @@ class Player_2(pygame.sprite.Sprite):
     Y_POS = GROUND_LOCATION
     JUMP_VEL = 8.5
 
-    def __init__(self, SCREEN, groups):
+    def __init__(self, groups):
         super().__init__(groups)
         self.image = JUMPING2.convert_alpha()
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.rect.x = self.X_POS
         self.rect.y = self.Y_POS
-        self.SCREEN = SCREEN
 
         self.jump_cooldown = 0
         self.step_index = 0
@@ -211,14 +214,19 @@ class Player_2(pygame.sprite.Sprite):
         self.dead_img = DEAD2
 
 
-    def update(self,user_input):
-
+    def render_player(self,display):
         if self.dino_duck:
             self.duck()
         if self.dino_run:
             self.run()
         if self.dino_jump:
             self.jump()
+        
+        display.blit(self.image, self.rect)
+    
+    
+
+    def update(self,actions):
 
         if self.jump_cooldown != 0:
             self.jump_cooldown -= 1
@@ -226,15 +234,15 @@ class Player_2(pygame.sprite.Sprite):
         if self.step_index >= 10:
             self.step_index = 0
 
-        if user_input[pygame.K_UP] and not self.dino_jump and self.jump_cooldown == 0:
+        if actions['up'] and not self.dino_jump and self.jump_cooldown == 0:
             self.dino_duck = False
             self.dino_run = False
             self.dino_jump = True
-        elif user_input[pygame.K_DOWN] and not self.dino_jump:
+        elif actions['down'] and not self.dino_jump:
             self.dino_duck = True
             self.dino_run = False
             self.dino_jump = False
-        elif not (self.dino_jump or user_input[pygame.K_DOWN]):
+        elif not (self.dino_jump or actions['down']):
             self.dino_duck = False
             self.dino_run = True
             self.dino_jump = False
@@ -276,14 +284,13 @@ class Player_3(pygame.sprite.Sprite):
     Y_POS = GROUND_LOCATION
     JUMP_VEL = 8.5
 
-    def __init__(self, SCREEN, groups):
+    def __init__(self, groups):
         super().__init__(groups)
         self.image = JUMPING3.convert_alpha()
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.rect.x = self.X_POS
         self.rect.y = self.Y_POS
-        self.SCREEN = SCREEN
 
         self.jump_cooldown = 0
         self.step_index = 0
@@ -299,14 +306,19 @@ class Player_3(pygame.sprite.Sprite):
         self.dead_img = DEAD3
 
 
-    def update(self,user_input):
-
+    def render_player(self,display):
         if self.dino_duck:
             self.duck()
         if self.dino_run:
             self.run()
         if self.dino_jump:
             self.jump()
+        
+        display.blit(self.image, self.rect)
+    
+    
+
+    def update(self,actions):
 
         if self.jump_cooldown != 0:
             self.jump_cooldown -= 1
@@ -314,15 +326,15 @@ class Player_3(pygame.sprite.Sprite):
         if self.step_index >= 10:
             self.step_index = 0
 
-        if user_input[pygame.K_UP] and not self.dino_jump and self.jump_cooldown == 0:
+        if actions['up'] and not self.dino_jump and self.jump_cooldown == 0:
             self.dino_duck = False
             self.dino_run = False
             self.dino_jump = True
-        elif user_input[pygame.K_DOWN] and not self.dino_jump:
+        elif actions['down'] and not self.dino_jump:
             self.dino_duck = True
             self.dino_run = False
             self.dino_jump = False
-        elif not (self.dino_jump or user_input[pygame.K_DOWN]):
+        elif not (self.dino_jump or actions['down']):
             self.dino_duck = False
             self.dino_run = True
             self.dino_jump = False
@@ -400,6 +412,31 @@ class GroundObstacle1(pygame.sprite.Sprite):
         SCREEN.blit(pygame.transform.scale(self.image[self.index//10], (50,50)), self.rect)
         self.index += 1
 
+class Mine2(pygame.sprite.Sprite):
+    X_POS = SCREEN_W + 100
+    Y_POS = GROUND_LOCATION - 70
+    def __init__(self,images, groups):
+        super().__init__(groups)
+        for image in images:
+            image.convert_alpha()
+        self.image = images
+        self.rect = self.image[0].get_rect()
+        self.rect.y = self.Y_POS
+        self.rect.x = self.X_POS
+        self.mask = pygame.mask.from_surface(self.image[0])
+        self.index = 0
+
+    def update(self,game_speed):
+        self.rect.x -= game_speed
+        if self.rect.x < -100:
+            self.kill()
+
+    def draw(self, SCREEN):
+        if self.index >= 20:
+            self.index = 0
+        SCREEN.blit(pygame.transform.scale(self.image[self.index//10], (200,200)), self.rect)
+        self.index += 1
+
 class FlyingObstacle(pygame.sprite.Sprite):
     X_POS = SCREEN_W + randint(0,500)
     Y_POS = GROUND_LOCATION - 8
@@ -450,7 +487,7 @@ class FlyingObstacle1(pygame.sprite.Sprite):
 
 class FlyingObstacle2(pygame.sprite.Sprite):
     X_POS = SCREEN_W + randint(0,500)
-    Y_POS = GROUND_LOCATION - 50
+    Y_POS = GROUND_LOCATION - 75
 
     def __init__(self,image, groups):
         super().__init__(groups)
@@ -474,7 +511,7 @@ class FlyingObstacle2(pygame.sprite.Sprite):
 
 class FlyingObstacle3(pygame.sprite.Sprite):
     X_POS = SCREEN_W + randint(0,500)
-    Y_POS = GROUND_LOCATION - 15
+    Y_POS = GROUND_LOCATION - 22
 
     def __init__(self,image, groups):
         super().__init__(groups)

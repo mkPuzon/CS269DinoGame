@@ -11,6 +11,7 @@ GROUND_LOCATION = 300
 BUTTON1 = pygame.image.load("Assets/Buttons/button_one.png")
 CURSOR = pygame.image.load("Assets/cursor.png")
 
+
 # Import assets for level 0 (defult)
 RUNNING = [pygame.image.load("Assets/Dino/defaultRun1.png"),
            pygame.image.load(("Assets/Dino/defaultRun2.png"))]
@@ -38,30 +39,29 @@ DUCKING1 = [pygame.image.load("Assets/Dino/westernDuck1.png"),
            pygame.image.load("Assets/Dino/westernDuck2.png")]
 DEAD1 = pygame.image.load("Assets/Dino/westernDead.png")
 ITEM1 = [pygame.image.load("Assets/Other/revolver.png"),pygame.image.load("Assets/Other/revolverShooting.png")]
-
+AMMO1 = pygame.image.load("Assets/Other/test_bullet.png")
 SMALL_OBST1 = [pygame.image.load("Assets/GroundObst/Tumbleweed.png"),
                 pygame.image.load("Assets/GroundObst/Tumbleweed2.png"),
                 pygame.image.load("Assets/GroundObst/Tumbleweed.png")]
 # LARGE_OBST1 = [pygame.image.load("Assets/GroundObst/.png"),
 #                 pygame.image.load("Assets/GroundObst/.png"),
 #                 pygame.image.load("Assets/GroundObst/.png")]
-FLYING_OBST1 = [pygame.image.load("Assets/FlyingObst/boomerang.png"),
-        pygame.image.load("Assets/FlyingObst/boomerang2.png"), pygame.image.load("Assets/FlyingObst/boomerang3.png"),
-        pygame.image.load("Assets/FlyingObst/boomerang4.png")]
+FLYING_OBST1 = [pygame.image.load("Assets/FlyingObst/horseshoe1.png"),
+        pygame.image.load("Assets/FlyingObst/horseshoe2.png"), pygame.image.load("Assets/FlyingObst/horseshoe3.png"),
+        pygame.image.load("Assets/FlyingObst/horseshoe4.png")]
 # GRAPHICS1 = pygame.image.load("Assets/Other/.png")
 GROUND1 = pygame.image.load("Assets/Other/TrackFilled.png")
 BACKDROP1 = pygame.image.load("Assets/Other/westernBackdrop.png")
 
 # Import assets for level 2 (WWI)
-RUNNING2 = [pygame.image.load("Assets/Dino/defaultRun1.png"),
-           pygame.image.load(("Assets/Dino/defaultRun2.png"))]
-JUMPING2 = pygame.image.load("Assets/Dino/defaultJump.png")
-DUCKING2 = [pygame.image.load("Assets/Dino/defaultDuck1.png"),
-           pygame.image.load("Assets/Dino/defaultDuck2.png")]
+RUNNING2 = [pygame.image.load("Assets/Dino/wwiRun1.png"),
+           pygame.image.load(("Assets/Dino/wwiRun2.png"))]
+JUMPING2 = pygame.image.load("Assets/Dino/wwiRun1.png")
+DUCKING2 = [pygame.image.load("Assets/Dino/wwiDuck1.png"),
+           pygame.image.load("Assets/Dino/ww1Duck2.png")]
 DEAD2 = pygame.image.load("Assets/Dino/defaultDead.png")
-SMALL_OBST2 = [pygame.image.load("Assets/GroundObst/smallCactus.png"),
-                pygame.image.load("Assets/GroundObst/smallCactus.png"),
-                pygame.image.load("Assets/GroundObst/smallCactus.png")]
+SMALL_OBST2 = [pygame.image.load("Assets/GroundObst/landmine1.png"),
+                pygame.image.load("Assets/GroundObst/landmine2.png")]
 LARGE_OBST2 = [pygame.image.load("Assets/GroundObst/sandbags.png"),
                 pygame.image.load("Assets/GroundObst/sandbagsWithWire.png"),
                 pygame.image.load("Assets/GroundObst/sandbagsWithWire.png")]
@@ -71,23 +71,16 @@ GRAPHICS2 = pygame.image.load("Assets/Other/Cloud.png")
 GROUND2 = pygame.image.load("Assets/Other/TrackFilled.png")
 BACKDROP2 = pygame.image.load("Assets/Other/ww1Backdrop.png")
 
-# # Import assets for level 3 (Star Wars)
-# RUNNING3 = [pygame.image.load("Assets/Dino/.png"),
-#            pygame.image.load(("Assets/Dino/.png"))]
-# JUMPING3 = pygame.image.load("Assets/Dino/.png")
-# DUCKING3 = [pygame.image.load("Assets/Dino/.png"),
-#            pygame.image.load("Assets/Dino/.png")]
-# DEAD3 = pygame.image.load("Assets/Dino/.png")
-# SMALL_OBST3 = [pygame.image.load("Assets/GroundObst/.png"),
-#                 pygame.image.load("Assets/GroundObst/.png"),
-#                 pygame.image.load("Assets/GroundObst/.png")]
-
-RUNNING3 = [pygame.image.load("Assets/Dino/defaultRun1.png"),
-           pygame.image.load(("Assets/Dino/defaultRun2.png"))]
-JUMPING3 = pygame.image.load("Assets/Dino/defaultJump.png")
-DUCKING3 = [pygame.image.load("Assets/Dino/defaultDuck1.png"),
-           pygame.image.load("Assets/Dino/defaultDuck2.png")]
+# Import assets for level 3 (Star Wars)
+RUNNING3 = [pygame.image.load("Assets/Dino/spaceRun1.png"),
+           pygame.image.load(("Assets/Dino/spaceRun2.png"))]
+JUMPING3 = pygame.image.load("Assets/Dino/spaceRun1.png")
+DUCKING3 = [pygame.image.load("Assets/Dino/spaceDuck1.png"),
+           pygame.image.load("Assets/Dino/spaceDuck2.png")]
 DEAD3 = pygame.image.load("Assets/Dino/defaultDead.png")
+SMALL_OBST3 = [pygame.image.load("Assets/GroundObst/droid.png"),
+                pygame.image.load("Assets/GroundObst/droid.png"),
+                pygame.image.load("Assets/GroundObst/droid.png")]
 
 LARGE_OBST3 = [pygame.image.load("Assets/GroundObst/Stormtrooper.png"),
                 pygame.image.load("Assets/GroundObst/Stormtrooper.png"),
@@ -97,4 +90,11 @@ FLYING_OBST3 = pygame.image.load("Assets/FlyingObst/MilleniumFalcon.png")
 GROUND3 = pygame.image.load("Assets/Other/starWarsTrack.png")
 BACKDROP3 = pygame.image.load("Assets/Other/starWarsBackdrop.png")
 
-# # Import assets for final boss/ boss fights
+# Music
+# WWIMUSIC = pygame.mixer.Sound("Assets/Sound/ww1sound100bpm.mp3")
+
+# Import menu assets
+L1BUTTONS = [pygame.image.load("Assets/Menu/menuButton1.png"),pygame.image.load("Assets/Menu/menuButton1.png")]
+L2BUTTONS = [pygame.image.load("Assets/Menu/menuButton2.png"),pygame.image.load("Assets/Menu/menuButton2D.png")]
+L3BUTTONS = [pygame.image.load("Assets/Menu/menuButton3.png"),pygame.image.load("Assets/Menu/menuButton3D.png")]
+L4BUTTONS = [pygame.image.load("Assets/Menu/menuButton4.png"),pygame.image.load("Assets/Menu/menuButton4D.png")]
