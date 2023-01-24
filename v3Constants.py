@@ -89,5 +89,11 @@ GROUND3 = pygame.image.load("Assets/Other/starWarsTrack.png")
 BACKDROP3 = pygame.image.load("Assets/Other/starWarsBackdrop.png")
 
 # Import sound assets
+WWI_MUSIC = pygame.mixer.Sound("Assets/Sound/ww1.wav")
+WESTERN_MUSIC = pygame.mixer.Sound("Assets/Sound/Western.wav")
+MENU_MUSIC = pygame.mixer.Sound("Assets/Sound/menu.wav")
+
 JUMP_SOUND = pygame.mixer.Sound("Assets/Sound/jump0.wav")
-WWI_MUSIC = pygame.mixer.Sound("Assets/Sound/ww1sound100bpm.wav")
+DEATH_SOUND = pygame.mixer.Sound("Assets/Sound/death.wav")
+GUNSHOT_SOUND = pygame.mixer.Sound("Assets/Sound/gunshot.wav")
+PLANE_SOUND = pygame.mixer.Sound("Assets/Sound/plane.wav")

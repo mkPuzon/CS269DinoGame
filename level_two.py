@@ -7,6 +7,8 @@ class Level_Two(State):
     def __init__(self, game):
         self.game = game
         State.__init__(self,game)
+        self.music = WESTERN_MUSIC
+        self.music.play(loops=-1)
 
         #points variable
         self.points = 0
@@ -18,6 +20,7 @@ class Level_Two(State):
         #Player Initialization
         self.player = Player_1(self.player_group)
         self.game_speed = 14
+        self.revolver = Item1(ITEM1,self.player,self.player_group)
 
         #Ground Initialization
         self.x_pos_bg = 0
@@ -40,6 +43,7 @@ class Level_Two(State):
         self.generate_obstacles()
         self.update_obstacles(self.game_speed)
         self.check_collision()
+        self.revolver.update()
 
         # self.game.reset_keys()
         clock.tick(30)
@@ -50,6 +54,7 @@ class Level_Two(State):
         self.move_ground(display)
         self.player.render_player(display)
         self.render_obstacles(display)
+        self.revolver.draw(display)
 
     def move_ground(self,display):
         display.blit(self.ground_img, (self.x_pos_bg, self.y_pos_bg))
@@ -77,18 +82,18 @@ class Level_Two(State):
         if len(self.obstacle_group) == 0:
             if randint(0,2) == 0:
                 new_obst = GroundObstacle1(SMALL_OBST1,self.obstacle_group)
-            # elif randint(0,2) == 1:
-            #     new_obst = GroundObstacle1(LARGE_OBST[0],self.obstacle_group)
-            #     new_obst2 = GroundObstacle1(SMALL_OBST[0],self.obstacle_group)
-            #     new_obst2.rect.x = new_obst.X_POS + randint(400,1000)
+            elif randint(0,2) == 1:
+                new_obst = GroundObstacle1_1(LARGE_OBST1,self.obstacle_group)
+                new_obst2 = GroundObstacle1(SMALL_OBST1,self.obstacle_group)
+                new_obst2.rect.x = new_obst.X_POS + randint(400,1000)
             elif randint(0,2) == 2:
                 new_obst = FlyingObstacle1(FLYING_OBST1,self.obstacle_group)
                 new_obst2 = GroundObstacle1(SMALL_OBST1,self.obstacle_group)
                 new_obst2.rect.x = new_obst.X_POS + randint(400,1000)
             elif randint(0,1) == 1:
                 new_obst = FlyingObstacle1(FLYING_OBST1,self.obstacle_group)
-                # new_obst2 = GroundObstacle1(LARGE_OBST1,self.obstacle_group)
-                # new_obst2.rect.x = new_obst.X_POS + randint(300,2000)
+                new_obst2 = GroundObstacle1_1(LARGE_OBST1,self.obstacle_group)
+                new_obst2.rect.x = new_obst.X_POS + randint(300,2000)
 
     def update_obstacles(self,game_speed):
         for obstacle in self.obstacle_group:
@@ -104,11 +109,12 @@ class Level_Two(State):
         #     overlap_area = self.player.mask.overlap_area(obstacle.mask, (obstacle.rect.x - self.player.rect.x, obstacle.rect.y - self.player.rect.y))
 
         if pygame.sprite.spritecollide(self.player,self.obstacle_group,False,pygame.sprite.collide_mask):
-    
+            DEATH_SOUND.play()
                 # death_count += 1
             pygame.time.delay(2000)
             for obstacle in self.obstacle_group:
                     obstacle.kill()
+            pygame.mixer.stop()
 
                     #interem return to menu
             while len(self.game.state_stack) > 1:

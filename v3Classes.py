@@ -559,23 +559,22 @@ class FlyingObstacle3(pygame.sprite.Sprite):
         SCREEN.blit(self.image, self.rect)
 
 class Item1(pygame.sprite.Sprite):
-    def __init__(self,groups,pos,IMAGES):
+    def __init__(self,images, player, groups):
         super().__init__(groups)
-        self.x_pos = pos[0]
-        self.y_pos = pos[1]
-        self.image = pygame.transform.scale(IMAGES[0],(40,40))
-        self.active_image = pygame.transform.scale(IMAGES[1],(40,40))
+        self.player = player
+        self.image = pygame.transform.scale(images[0],(40,40))
+        self.active_image = pygame.transform.scale(images[1],(40,40))
         self.rect = self.image.get_rect()
-        self.rect.x = self.x_pos
-        self.rect.y = self.y_pos
+        self.rect.x = self.player.rect.centerx
+        self.rect.y = self.player.rect.centery
         self.cooldown = 0
         self.ammo = 3
 
-    def update(self, player):
-        self.rect.x = player.rect.x + 75
-        self.rect.y = player.rect.y + 75
-        if player.dino_duck == True:
-            self.rect.y = player.rect.y + 90
+    def update(self):
+        self.rect.x = self.player.rect.centerx + 15
+        self.rect.y = self.player.rect.centery + 5
+        if self.player.dino_duck == True:
+            self.rect.y = self.player.rect.y + 90
         if self.ammo == 0:
             self.kill()
 
