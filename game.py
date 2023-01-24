@@ -18,7 +18,7 @@ class Game():
       #Below is a dictionary that tracks user keyboard input
       self.actions = {'up':False,'down':False,'start':False,'escape':False,'back':False,'space': False,'tab':False}
       self.font = 'Assets/ARCADECLASSIC.TTF'
-      self.dt, self.prev_time = 0,0
+    #   self.dt, self.prev_time = 0,0
       self.BLACK,self.WHITE = (0,0,0),(255,255,255)
       #This is a stack that keeps track of the game states
 
@@ -30,7 +30,7 @@ class Game():
 
     def game_loop(self):
         while self.playing:
-            self.get_dt()
+            # self.get_dt()
             self.process_events()
             self.update()
             self.render()

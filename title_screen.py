@@ -2,13 +2,14 @@ from state import State
 from v3Classes import *
 from v3Constants import *
 from level_one import Level_One
+from help import Help
 
 class Title(State):
     def __init__(self,game):
         self.game = game
         State.__init__(self,game)
         
-        self.menu_options = {0:'one',1:'two',2:'three',4:'four',5:'help',6:'credits'}
+        self.menu_options = {0:'one',1:'two',2:'three',3:'four',4:'help',5:'credits'}
         self.index = 0
 
         #BUTTONS
@@ -53,16 +54,18 @@ class Title(State):
         if self.menu_options[self.index] == "one":
             new_state = Level_One(self.game)
             new_state.enter_state()
-        if self.menu_options[self.index] == "":
+        if self.menu_options[self.index] == "two":
             pass
-        if self.menu_options[self.index] == "":
+        if self.menu_options[self.index] == "three":
             pass
-        if self.menu_options[self.index] == "":
+        if self.menu_options[self.index] == "four":
             pass
-        if self.menu_options[self.index] == "":
+        if self.menu_options[self.index] == "help":
+            new_state = Help(self.game)
+            new_state.enter_state()
+        if self.menu_options[self.index] == "credits":
             pass
-        if self.menu_options[self.index] == "":
-            pass
+
 
     def update_cursor(self,actions):
         if actions['up']:

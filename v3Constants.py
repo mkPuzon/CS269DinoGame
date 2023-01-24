@@ -45,9 +45,9 @@ SMALL_OBST1 = [pygame.image.load("Assets/GroundObst/Tumbleweed.png"),
 # LARGE_OBST1 = [pygame.image.load("Assets/GroundObst/.png"),
 #                 pygame.image.load("Assets/GroundObst/.png"),
 #                 pygame.image.load("Assets/GroundObst/.png")]
-FLYING_OBST1 = [pygame.image.load("Assets/FlyingObst/boomerang.png"),
-        pygame.image.load("Assets/FlyingObst/boomerang2.png"), pygame.image.load("Assets/FlyingObst/boomerang3.png"),
-        pygame.image.load("Assets/FlyingObst/boomerang4.png")]
+FLYING_OBST1 = [pygame.image.load("Assets/FlyingObst/horseshoe1.png"),
+        pygame.image.load("Assets/FlyingObst/horseshoe2.png"), pygame.image.load("Assets/FlyingObst/horseshoe3.png"),
+        pygame.image.load("Assets/FlyingObst/horseshoe4.png")]
 # GRAPHICS1 = pygame.image.load("Assets/Other/.png")
 GROUND1 = pygame.image.load("Assets/Other/TrackFilled.png")
 BACKDROP1 = pygame.image.load("Assets/Other/westernBackdrop.png")
