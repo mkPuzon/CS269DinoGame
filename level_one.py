@@ -78,8 +78,22 @@ class Level_One(State):
                 new_obst = GroundObstacle(SMALL_OBST[0],self.obstacle_group)
             elif randint(0,2) == 1:
                 new_obst = GroundObstacle(LARGE_OBST[0],self.obstacle_group)
+                new_obst2 = GroundObstacle(SMALL_OBST[0],self.obstacle_group)
+                new_obst2.rect.x = new_obst.X_POS + randint(400,1000)
             elif randint(0,2) == 2:
                 new_obst = FlyingObstacle(FLYING_OBST,self.obstacle_group)
+                new_obst2 = GroundObstacle(SMALL_OBST[0],self.obstacle_group)
+                new_obst2.rect.x = new_obst.X_POS + randint(400,1000)
+            elif randint(0,1) == 1:
+                new_obst = FlyingObstacle(FLYING_OBST,self.obstacle_group)
+                new_obst2 = FlyingObstacle(FLYING_OBST,self.obstacle_group)
+                new_obst3 = FlyingObstacle(FLYING_OBST,self.obstacle_group)
+                new_obst4 = FlyingObstacle(FLYING_OBST,self.obstacle_group)
+                new_obst5 = FlyingObstacle(FLYING_OBST,self.obstacle_group)
+                new_obst2.rect.x, new_obst2.rect.y = new_obst.X_POS - 25, new_obst.rect.y - 40
+                new_obst3.rect.x, new_obst3.rect.y = new_obst.X_POS + 15, new_obst.rect.y - 22
+                new_obst4.rect.x, new_obst4.rect.y = new_obst.X_POS + 5, new_obst.rect.y - 100
+                new_obst5.rect.x, new_obst5.rect.y = new_obst.X_POS - 12, new_obst.rect.y - 135
 
     def update_obstacles(self,game_speed):
         for obstacle in self.obstacle_group:
