@@ -42,11 +42,8 @@ DEAD1 = pygame.image.load("Assets/Dino/westernDead.png")
 ITEM1 = [pygame.image.load("Assets/Other/revolver.png"),pygame.image.load("Assets/Other/revolverShooting.png")]
 AMMO1 = pygame.image.load("Assets/Other/test_bullet.png")
 SMALL_OBST1 = [pygame.image.load("Assets/GroundObst/Tumbleweed.png"),
-                pygame.image.load("Assets/GroundObst/Tumbleweed2.png"),
-                pygame.image.load("Assets/GroundObst/Tumbleweed.png")]
-# LARGE_OBST1 = [pygame.image.load("Assets/GroundObst/.png"),
-#                 pygame.image.load("Assets/GroundObst/.png"),
-#                 pygame.image.load("Assets/GroundObst/.png")]
+                pygame.image.load("Assets/GroundObst/Tumbleweed2.png")]
+LARGE_OBST1 = pygame.image.load("Assets/GroundObst/horse.png")
 FLYING_OBST1 = [pygame.image.load("Assets/FlyingObst/horseshoe1.png"),
         pygame.image.load("Assets/FlyingObst/horseshoe2.png"), pygame.image.load("Assets/FlyingObst/horseshoe3.png"),
         pygame.image.load("Assets/FlyingObst/horseshoe4.png")]
