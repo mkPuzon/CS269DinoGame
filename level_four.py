@@ -8,8 +8,8 @@ class Level_Four(State):
     def __init__(self, game):
         self.game = game
         State.__init__(self,game)
-        # self.music = SPACE_MUSIC
-        # self.music.play(loops=-1)
+        self.music = SPACE_MUSIC
+        self.music.play(loops=-1)
 
         #points variable
         self.points = 0
@@ -114,7 +114,7 @@ class Level_Four(State):
 
                     #interem return to menu
             self.game_over()
-            
+
     def game_over(self):
         #load new state here
         pygame.mixer.stop()
@@ -128,3 +128,6 @@ class Level_Four(State):
     def check_score_lv4(self):
         if self.points > self.game.lvl_four_score:
            self.game.lvl_four_score = self.points
+
+    def render_score(self, display):
+        self.game.draw_text('Score  ' + str(self.points),30,display,display.get_width()- 200,100)
