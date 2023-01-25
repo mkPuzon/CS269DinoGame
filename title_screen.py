@@ -12,7 +12,6 @@ class Title(State):
     def __init__(self,game):
         self.game = game
         State.__init__(self,game)
-        self.music = MENU_MUSIC
         
         self.menu_options = {0:'one',1:'two',2:'three',3:'four',4:'help',5:'credits'}
         self.index = 0
@@ -43,7 +42,7 @@ class Title(State):
         self.select = MENU_SELECT
 
     def update(self,delta_time,actions):
-        self.music.play(loops=-1)
+
         self.update_cursor(actions)
         if actions['start']:
             self.select_sound()
