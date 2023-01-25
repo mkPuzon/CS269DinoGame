@@ -19,6 +19,7 @@ class Level_Two(State):
 
         #Player Initialization
         self.player = Player_2(self.player_group)
+        self.revolver = Item1(ITEM1,self.player,self.player_group)
         self.game_speed = 14
 
         self.x_pos_bg = 0
@@ -42,6 +43,7 @@ class Level_Two(State):
         self.generate_obstacles()
         self.update_obstacles(self.game_speed)
         self.check_collision()
+        self.revolver.update()
 
         # self.game.reset_keys()
         clock.tick(30)
@@ -53,6 +55,7 @@ class Level_Two(State):
         self.player.render_player(display)
         self.render_obstacles(display)
         self.render_score(display)
+        self.revolver.draw(display)
 
     def move_ground(self,display):
         display.blit(self.ground_img, (self.x_pos_bg, self.y_pos_bg))
