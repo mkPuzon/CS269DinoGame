@@ -121,7 +121,7 @@ class Level_Two(State):
             self.game_over()
     
     def check_score_lv2(self):
-        if self.points > self.game.lvl_one_score:
+        if self.points > self.game.lvl_two_score:
            self.game.lvl_two_score = self.points
 
     def game_over(self):
