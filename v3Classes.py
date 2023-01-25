@@ -46,7 +46,6 @@ class Player_1(pygame.sprite.Sprite):
 
 
     def update(self,actions):
-
         if self.jump_cooldown != 0:
             self.jump_cooldown -= 1
         
@@ -108,7 +107,6 @@ class Player_1(pygame.sprite.Sprite):
         if self.jump_vel < -self.JUMP_VEL:
             self.dino_jump = False
             self.jump_vel = self.JUMP_VEL  
-
 
     def draw(self,display):
         display.blit(self.image, self.rect)
@@ -577,7 +575,7 @@ class FlyingObstacle1(pygame.sprite.Sprite):
         self.index = 0
 
     def update(self,game_speed):
-        self.rect.x -= game_speed
+        self.rect.x -= game_speed * 1.2
         if self.rect.x < -200:
             self.kill()
 
@@ -601,7 +599,7 @@ class FlyingObstacle2(pygame.sprite.Sprite):
         self.index = 0
 
     def update(self,game_speed):
-        self.rect.x -= game_speed
+        self.rect.x -= game_speed * 1.2
         if self.rect.x < -200:
             self.kill()
 
@@ -625,7 +623,7 @@ class FlyingObstacle3(pygame.sprite.Sprite):
         self.index = 0
 
     def update(self,game_speed):
-        self.rect.x -= game_speed
+        self.rect.x -= game_speed * 1.2
         if self.rect.x < -200:
             self.kill()
 
