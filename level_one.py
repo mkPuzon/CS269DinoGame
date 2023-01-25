@@ -37,7 +37,7 @@ class Level_One(State):
         if actions['tab']:
             new_state = Pause(self.game)
             new_state.enter_state()
-
+        
         self.update_speed()
         self.player.update(actions)
         self.check_collision()

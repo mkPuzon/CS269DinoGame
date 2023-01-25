@@ -98,7 +98,7 @@ WESTERN_MUSIC = pygame.mixer.Sound("Assets/Sound/Western.wav")
 SPACE_MUSIC = pygame.mixer.Sound("Assets/Sound/StarWars8bit.wav")
 MENU_MUSIC = pygame.mixer.Sound("Assets/Sound/menu.wav")
 
-JUMP_SOUND = pygame.mixer.Sound("Assets/Sound/JumpEffect.wav")
+JUMP_SOUND = pygame.mixer.Sound("Assets/Sound/jump0.wav")
 DEATH_SOUND = pygame.mixer.Sound("Assets/Sound/death.wav")
 GUNSHOT_SOUND = pygame.mixer.Sound("Assets/Sound/gunshot.wav")
 TANK_SHOT_SOUND = pygame.mixer.Sound("Assets/Sound/TankGunShot.wav")
