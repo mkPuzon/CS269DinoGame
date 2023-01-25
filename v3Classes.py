@@ -395,7 +395,7 @@ class GroundObstacle(pygame.sprite.Sprite):
     def draw(self,display):
         display.blit(self.image,self.rect)
 
-class GroundObstacle1_1(pygame.sprite.Sprite):
+class GroundObstacle1(pygame.sprite.Sprite):
     X_POS = SCREEN_W + 100
     Y_POS = GROUND_LOCATION + 15
     def __init__(self,image,groups):
@@ -443,16 +443,16 @@ class Mine2(pygame.sprite.Sprite):
         SCREEN.blit(pygame.transform.scale(self.image[self.index//10], (70,70)), self.rect)
         self.index += 1
 
-class GroundObstacle1_1(pygame.sprite.Sprite):
+class GroundObstacle1_T(pygame.sprite.Sprite):
     X_POS = SCREEN_W + 100
-    Y_POS = GROUND_LOCATION + 15
-    def __init__(self,image,groups):
+    Y_POS = GROUND_LOCATION + 65
+    def __init__(self,images,groups):
         super().__init__(groups)
-        self.image = image
-        self.rect = self.image.get_rect()
+        self.image = images
+        self.rect = images[0].get_rect()
         self.rect.y = self.Y_POS
         self.rect.x = self.X_POS
-        self.mask = pygame.mask.from_surface(self.image)
+        self.mask = pygame.mask.from_surface(images[0])
         self.index = 0
 
     def update(self,game_speed):
@@ -463,7 +463,7 @@ class GroundObstacle1_1(pygame.sprite.Sprite):
     def draw(self,SCREEN):
         if self.index >= 20:
             self.index = 0
-        SCREEN.blit(pygame.transform.scale(self.image, (100,100)), self.rect)
+        SCREEN.blit(pygame.transform.scale(self.image[self.index//10], (50,50)), self.rect)
         self.index += 1
 
 class Mine2(pygame.sprite.Sprite):

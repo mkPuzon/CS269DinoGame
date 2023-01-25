@@ -2,11 +2,14 @@ from state import State
 from v3Classes import *
 from v3Constants import *
 from pause import Pause
+from game_over import Game_Over
 
 class Level_Four(State):
     def __init__(self, game):
         self.game = game
         State.__init__(self,game)
+        # self.music = SPACE_MUSIC
+        # self.music.play(loops=-1)
 
         #points variable
         self.points = 0
@@ -110,5 +113,18 @@ class Level_Four(State):
                     obstacle.kill()
 
                     #interem return to menu
-            while len(self.game.state_stack) > 1:
-                self.game.state_stack.pop()
+            self.game_over()
+            
+    def game_over(self):
+        #load new state here
+        pygame.mixer.stop()
+        self.check_score_lv4()
+        new_state = Game_Over(self.game)
+        new_state.enter_state()
+
+    def get_score(self):
+        return self.points
+
+    def check_score_lv4(self):
+        if self.points > self.game.lvl_four_score:
+           self.game.lvl_four_score = self.points
