@@ -1,6 +1,7 @@
 from state import State
 from v3Classes import *
 from v3Constants import *
+from help import Help
 
 class Pause(State):
     def __init__(self, game):
@@ -55,7 +56,8 @@ class Pause(State):
         if self.menu_options[self.index] == "cont":
             self.exit_state()
         elif self.menu_options[self.index] == 'help':
-            pass
+            new_state = Help(self.game)
+            new_state.enter_state()
         elif self.menu_options[self.index] == 'title':
             while len(self.game.state_stack) > 1:
                 self.game.state_stack.pop()
