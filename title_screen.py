@@ -112,7 +112,8 @@ class Title(State):
     def draw_button(self,display):
         if self.two_unlocked == False:
             self.level_two.draw_button(display,False)
-
+        
+    
     
     def check_to_unlock(self):
         pass
