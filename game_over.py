@@ -21,9 +21,13 @@ class Game_Over(State):
         self.cursor_ypos = self.retry.y
         self.cursor_rect.x,self.cursor_rect.y = self.retry.x - 120, self.cursor_ypos
 
+        self.move = MENU_MOVE
+        self.select = MENU_SELECT
+
     def update(self,delta_time,actions):
         self.update_cursor(actions)
         if actions['start']:
+            self.select_sound()
             self.manage_transitions()
         self.game.reset_keys()
     
@@ -52,7 +56,15 @@ class Game_Over(State):
     def update_cursor(self,actions):
         if actions['up']:
             self.index = (self.index - 1) % len(self.menu_options)
+            self.move_sound()
         if actions['down']:
             self.index = (self.index + 1) % len(self.menu_options)
+            self.move_sound()
         self.cursor_rect.y = self.cursor_ypos + (self.index *80)
+
+    def move_sound(self):
+        pygame.mixer.Sound.play(self.move)
+
+    def select_sound(self):
+        pygame.mixer.Sound.play(self.select)
 

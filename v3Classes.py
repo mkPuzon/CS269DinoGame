@@ -476,9 +476,6 @@ class Item(pygame.sprite.Sprite):
         SCREEN.blit(self.image,self.rect)
 
 class Button():
-
-    basic_color = (30,80,200)
-    hover_color = (70,70,170)
     
 
     def __init__(self,x,y,width,height,text):
@@ -488,8 +485,11 @@ class Button():
         self.height = height
         self.text = text
         self.clicked = False
+
+        self.basic_color = (30,80,200)
+        self.hover_color = (70,70,170)
         
-    def draw_button(self,SCREEN):
+    def draw_button(self,SCREEN,unlocked = True):
         # action = False
         button_rect = pygame.Rect(self.x,self.y,self.width,self.height)
 
@@ -506,8 +506,11 @@ class Button():
         #             return action       
         # else:
         
+        if(unlocked == True):
+            pygame.draw.rect(SCREEN,self.basic_color,button_rect)
+        if(unlocked == False):
+            pygame.draw.rect(SCREEN,self.hover_color,button_rect)
         
-        pygame.draw.rect(SCREEN,self.basic_color,button_rect)
         font = pygame.font.Font('Assets/ARCADECLASSIC.TTF', 30)
         text = font.render(self.text, True, (255,255,255))
         text_len = text.get_width()

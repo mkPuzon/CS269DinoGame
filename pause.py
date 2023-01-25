@@ -21,10 +21,14 @@ class Pause(State):
         self.cursor_ypos = self.cont.y
         self.cursor_rect.x,self.cursor_rect.y = self.cont.x - 120, self.cursor_ypos
 
+        self.move = MENU_MOVE
+        self.select = MENU_SELECT
+
     def update(self,delta_time,actions):
         
         self.update_cursor(actions)
         if actions['start']:
+            self.select_sound()
             self.manage_transitions()
         self.game.reset_keys()
 
@@ -40,8 +44,10 @@ class Pause(State):
 
     def update_cursor(self,actions):
         if actions['up']:
+            self.move_sound()
             self.index = (self.index - 1) % len(self.menu_options)
         if actions['down']:
+            self.move_sound()
             self.index = (self.index + 1) % len(self.menu_options)
         self.cursor_rect.y = self.cursor_ypos + (self.index *80)
     
@@ -53,3 +59,9 @@ class Pause(State):
         elif self.menu_options[self.index] == 'title':
             while len(self.game.state_stack) > 1:
                 self.game.state_stack.pop()
+    
+    def move_sound(self):
+        pygame.mixer.Sound.play(self.move)
+
+    def select_sound(self):
+        pygame.mixer.Sound.play(self.select)

@@ -1,6 +1,7 @@
 '''File to hold constants and assets'''
 import pygame
 
+pygame.init()
 # Screen dimentions
 SCREEN_W = 1200
 SCREEN_H = 600
@@ -10,6 +11,8 @@ GROUND_LOCATION = 300
 #Menu Assets
 BUTTON1 = pygame.image.load("Assets/Buttons/button_one.png")
 CURSOR = pygame.image.load("Assets/cursor.png")
+MENU_MOVE = pygame.mixer.Sound('Assets/Sound/menu_move.wav')
+MENU_SELECT = pygame.mixer.Sound('Assets/Sound/select.wav')
 
 # Import assets for level 0 (defult)
 RUNNING = [pygame.image.load("Assets/Dino/defaultRun1.png"),

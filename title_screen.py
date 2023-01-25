@@ -20,6 +20,13 @@ class Title(State):
         self.level_four = Button(self.game.screen_width//2,300+(80*3),200,70,'LEVEL FOUR')
         self.help = Button(self.game.screen_width//2,300+(80*4),200,70,'HELP')
         self.credits = Button(self.game.screen_width//2,300+(80*5),200,70,'CREDITS')
+
+        #UNLOCK
+        self.one_unlocked = True
+        self.two_unlocked = False
+        self.three_unlocked = False
+        self.three_unlocked = False
+
         
         #Cursor Images
         self.cursor_image = CURSOR
@@ -27,9 +34,14 @@ class Title(State):
         self.cursor_ypos = self.level_one.y
         self.cursor_rect.x,self.cursor_rect.y = self.level_one.x - 120, self.cursor_ypos
 
+        #Sound
+        self.move = MENU_MOVE
+        self.select = MENU_SELECT
+
     def update(self,delta_time,actions):
         self.update_cursor(actions)
         if actions['start']:
+            self.select_sound()
             self.manage_transitions()
         self.game.reset_keys()
 
@@ -40,13 +52,13 @@ class Title(State):
         
         str_score_one = "LVL 1  HIGH  SCORE   "+str(self.game.lvl_one_score)
         str_score_two = "LVL 2  HIGH  SCORE   "+str(self.game.lvl_two_score)
-        
+
         self.game.draw_text(str_score_one,30,self.game.window,self.game.screen_width//4,350)
         self.game.draw_text(str_score_two,30,self.game.window,self.game.screen_width//4,400)
 
 
         self.game.draw_text("Use  up  and  down  keys  to  navigate  the  menu",50,self.game.window,self.game.screen_width//2,225)
-        
+        self.game.draw_text("P R E S S  E S C  T O  Q U I T",30,self.game.window,self.game.screen_width//2,275)
         display.blit(self.cursor_image,self.cursor_rect)
 
         #draw buttons to screen
@@ -62,6 +74,7 @@ class Title(State):
             new_state = Level_One(self.game)
             new_state.enter_state()
         if self.menu_options[self.index] == "two":
+
             new_state = Level_Two(self.game)
             new_state.enter_state()
         if self.menu_options[self.index] == "three":
@@ -78,6 +91,23 @@ class Title(State):
     def update_cursor(self,actions):
         if actions['up']:
             self.index = (self.index - 1) % len(self.menu_options)
+            self.move_sound()
         if actions['down']:
             self.index = (self.index + 1) % len(self.menu_options)
+            self.move_sound()
         self.cursor_rect.y = self.cursor_ypos + (self.index *80)
+
+    def move_sound(self):
+        pygame.mixer.Sound.play(self.move)
+
+    def select_sound(self):
+        pygame.mixer.Sound.play(self.select)
+
+    def draw_button(self,display):
+        if self.two_unlocked == False:
+            self.level_two.draw_button(display,False)
+        
+
+    
+    def check_to_unlock(self):
+        pass
