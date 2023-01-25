@@ -3,6 +3,9 @@ from v3Classes import *
 from v3Constants import *
 from level_one import Level_One
 from level_two import Level_Two
+from level_four import Level_Four
+from level_three import Level_Three
+from level_two import Level_Two
 from help import Help
 
 class Title(State):
@@ -78,9 +81,11 @@ class Title(State):
             new_state = Level_Two(self.game)
             new_state.enter_state()
         if self.menu_options[self.index] == "three":
-            pass
+            new_state = Level_Three(self.game)
+            new_state.enter_state()
         if self.menu_options[self.index] == "four":
-            pass
+            new_state = Level_Four(self.game)
+            new_state.enter_state()
         if self.menu_options[self.index] == "help":
             new_state = Help(self.game)
             new_state.enter_state()
