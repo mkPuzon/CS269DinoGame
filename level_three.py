@@ -2,6 +2,7 @@ from state import State
 from v3Classes import *
 from v3Constants import *
 from pause import Pause
+from game_over import Game_Over
 
 class Level_Three(State):
     def __init__(self, game):
@@ -116,5 +117,18 @@ class Level_Three(State):
             pygame.mixer.stop()
 
                     #interem return to menu
-            while len(self.game.state_stack) > 1:
-                self.game.state_stack.pop()
+            self.game_over()
+
+    def game_over(self):
+        #load new state here
+        pygame.mixer.stop()
+        self.check_score_lv3()
+        new_state = Game_Over(self.game)
+        new_state.enter_state()
+
+    def get_score(self):
+        return self.points
+
+    def check_score_lv3(self):
+        if self.points > self.game.lvl_three_score:
+           self.game.lvl_three_score = self.points

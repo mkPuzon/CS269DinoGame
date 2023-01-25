@@ -8,6 +8,8 @@ class Level_Two(State):
     def __init__(self, game):
         self.game = game
         State.__init__(self,game)
+        self.music = WESTERN_MUSIC
+        self.music.play(loops=-1)
         #points variable
         self.points = 0
 
@@ -21,11 +23,11 @@ class Level_Two(State):
 
         self.x_pos_bg = 0
         self.y_pos_bg = GROUND_LOCATION + 100
-        self.ground_img = GROUND2.convert_alpha()
+        self.ground_img = GROUND1.convert_alpha()
         self.ground_image_width = self.ground_img.get_width()
         
         #Backdrop  Initialization
-        self.backdrop_img = BACKDROP2.convert_alpha()
+        self.backdrop_img = BACKDROP1.convert_alpha()
         self.backdrop_image_width = self.backdrop_img.get_width()
         self.x_pos_backdrop = 0
         self.y_pos_backdrop = 115
@@ -76,11 +78,19 @@ class Level_Two(State):
     def generate_obstacles(self):
         if len(self.obstacle_group) == 0:
             if randint(0,2) == 0:
-                new_obst = GroundObstacle(SMALL_OBST2[0],self.obstacle_group)
+                new_obst = GroundObstacle1_T(SMALL_OBST1,self.obstacle_group)
             elif randint(0,2) == 1:
-                new_obst = GroundObstacle(LARGE_OBST2[0],self.obstacle_group)
+                new_obst = GroundObstacle(LARGE_OBST1,self.obstacle_group)
+                new_obst2 = GroundObstacle1_T(SMALL_OBST1,self.obstacle_group)
+                new_obst2.rect.x = new_obst.X_POS + randint(400,1000)
             elif randint(0,2) == 2:
-                new_obst = FlyingObstacle(FLYING_OBST2,self.obstacle_group)
+                new_obst = FlyingObstacle1(FLYING_OBST1,self.obstacle_group)
+                new_obst2 = GroundObstacle1_T(SMALL_OBST1,self.obstacle_group)
+                new_obst2.rect.x = new_obst.X_POS + randint(400,1000)
+            elif randint(0,1) == 1:
+                new_obst = FlyingObstacle1(FLYING_OBST1,self.obstacle_group)
+                new_obst2 = GroundObstacle(LARGE_OBST1,self.obstacle_group)
+                new_obst2.rect.x = new_obst.X_POS + randint(300,2000)
 
     def update_obstacles(self,game_speed):
         for obstacle in self.obstacle_group:
