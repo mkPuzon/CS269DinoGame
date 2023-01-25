@@ -8,18 +8,18 @@ class Game_Over(State):
         self.game = game
         State.__init__(self,game)
         
-        self.menu_options = {0:'retry',1:'menu'}
+        self.menu_options = {0:'menu'}
         self.index = 0
 
         #BUTTONS
-        self.retry = Button(self.game.screen_width//2,300+(80*0),200,70,'R E T R Y')
+
         self.menu = Button(self.game.screen_width//2,300+(80*1),200,70,'M E N U')
 
         #Cursor INIT
         self.cursor_image = CURSOR
         self.cursor_rect = self.cursor_image.get_rect()
-        self.cursor_ypos = self.retry.y
-        self.cursor_rect.x,self.cursor_rect.y = self.retry.x - 120, self.cursor_ypos
+        self.cursor_ypos = self.menu.y
+        self.cursor_rect.x,self.cursor_rect.y = self.menu.x - 120, self.cursor_ypos
 
         self.move = MENU_MOVE
         self.select = MENU_SELECT
@@ -43,12 +43,9 @@ class Game_Over(State):
         
         display.blit(self.cursor_image,self.cursor_rect)
 
-        self.retry.draw_button(display)
         self.menu.draw_button(display)
 
     def manage_transitions(self):
-        if self.menu_options[self.index] == "retry":
-            self.exit_state()
         if self.menu_options[self.index] == "menu":
             while len(self.game.state_stack) > 1:
                 self.game.state_stack.pop()
