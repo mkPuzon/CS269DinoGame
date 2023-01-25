@@ -4,7 +4,6 @@ from v3Constants import *
 from random import randint
 
 
-
 class Player_1(pygame.sprite.Sprite):
     # player constants
     X_POS = 100
@@ -501,7 +500,7 @@ class GroundObstacle1_T(pygame.sprite.Sprite):
         self.rect = images[0].get_rect()
         self.rect.y = self.Y_POS
         self.rect.x = self.X_POS
-        self.mask = pygame.mask.from_surface(images[0])
+        self.mask = pygame.mask.from_surface(pygame.transform.scale(self.image[0], (60,60)))
         self.index = 0
 
     def update(self,game_speed):
@@ -512,7 +511,7 @@ class GroundObstacle1_T(pygame.sprite.Sprite):
     def draw(self,SCREEN):
         if self.index >= 20:
             self.index = 0
-        SCREEN.blit(pygame.transform.scale(self.image[self.index//10], (50,50)), self.rect)
+        SCREEN.blit(pygame.transform.scale(self.image[self.index//10], (60,60)), self.rect)
         self.index += 1
 
 class Mine2(pygame.sprite.Sprite):
@@ -641,8 +640,8 @@ class Item1(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(images[0],(40,40))
         self.active_image = pygame.transform.scale(images[1],(40,40))
         self.rect = self.image.get_rect()
-        self.rect.x = self.player.rect.centerx
-        self.rect.y = self.player.rect.centery
+        self.rect.x = self.player.rect.centerx + 15
+        self.rect.y = self.player.rect.centery + 5
         self.cooldown = 0
         self.ammo = 3
 

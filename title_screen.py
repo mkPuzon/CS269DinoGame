@@ -7,6 +7,7 @@ from level_four import Level_Four
 from level_three import Level_Three
 from level_two import Level_Two
 from help import Help
+from credits import Credits
 
 class Title(State):
     def __init__(self,game):
@@ -98,7 +99,8 @@ class Title(State):
             new_state = Help(self.game)
             new_state.enter_state()
         if self.menu_options[self.index] == "credits":
-            pass
+            new_state = Credits(self.game)
+            new_state.enter_state()
 
 
     def update_cursor(self,actions):
