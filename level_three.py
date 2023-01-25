@@ -53,6 +53,7 @@ class Level_Three(State):
         self.move_ground(display)
         self.player.render_player(display)
         self.render_obstacles(display)
+        self.render_score(display)
 
     def move_ground(self,display):
         display.blit(self.ground_img, (self.x_pos_bg, self.y_pos_bg))
@@ -87,7 +88,7 @@ class Level_Three(State):
             elif randint(0,2) == 2:
                 new_obst = FlyingObstacle2(FLYING_OBST2,self.obstacle_group)
                 new_obst2 = GroundObstacle(LARGE_OBST2[randint(0,2)],self.obstacle_group)
-                new_obst2.rect.x = new_obst.X_POS + randint(400,1000)
+                new_obst2.rect.x = new_obst.X_POS + randint(400,2000)
             elif randint(0,1) == 1:
                 new_obst = FlyingObstacle2(FLYING_OBST2,self.obstacle_group)
                 new_obst2 = Mine2(SMALL_OBST2,self.obstacle_group)

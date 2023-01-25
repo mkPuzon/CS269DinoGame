@@ -91,10 +91,10 @@ class Game():
             self.actions[action] = False
         
     
-    def draw_text(self, text,size,display, x,y):
+    def draw_text(self, text,size,display, x,y,color=(0,0,0)):
     
         font = pygame.font.Font('Assets/ARCADECLASSIC.TTF', size)
-        text_surface = font.render(text,True,self.BLACK)
+        text_surface = font.render(text,True,color)
         text_rect = text_surface.get_rect()
         text_rect.center = (x,y)
         display.blit(text_surface,text_rect)
