@@ -10,7 +10,7 @@ class Level_One(State):
         State.__init__(self,game)
         self.music = MENU_MUSIC
         self.music.play(loops=-1)
-
+        
         #points variable
         self.points = 0
 
@@ -129,6 +129,8 @@ class Level_One(State):
 
     def game_over(self):
         #load new state here
+
+        pygame.mixer.stop()
         self.check_score_lv1()
         new_state = Game_Over(self.game)
         new_state.enter_state()

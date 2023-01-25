@@ -115,6 +115,7 @@ class Level_Two(State):
 
     def game_over(self):
         #load new state here
+        pygame.mixer.stop()
         self.check_score_lv2()
         new_state = Game_Over(self.game)
         new_state.enter_state()
