@@ -132,3 +132,5 @@ class Level_Three(State):
     def check_score_lv3(self):
         if self.points > self.game.lvl_three_score:
            self.game.lvl_three_score = self.points
+    def render_score(self, display):
+        self.game.draw_text('Score  ' + str(self.points),30,display,display.get_width()- 200,100)

@@ -134,3 +134,6 @@ class Level_Two(State):
     
     def get_score(self):
         return self.points
+
+    def render_score(self, display):
+        self.game.draw_text('Score  ' + str(self.points),30,display,display.get_width()- 200,100)

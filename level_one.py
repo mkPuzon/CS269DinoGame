@@ -53,6 +53,7 @@ class Level_One(State):
         self.move_ground(display)
         self.player.render_player(display)
         self.render_obstacles(display)
+        self.render_score(display)
 
     def move_ground(self,display):
         display.blit(self.ground_img, (self.x_pos_bg, self.y_pos_bg))
@@ -140,5 +141,6 @@ class Level_One(State):
     def get_score(self):
         return self.points
 
-
+    def render_score(self, display):
+        self.game.draw_text('Score  ' + str(self.points),30,display,display.get_width()- 200,100)
 
