@@ -103,6 +103,7 @@ class Level_Four(State):
 
         if pygame.sprite.spritecollide(self.player,self.obstacle_group,False,pygame.sprite.collide_mask):
             DEATH_SOUND.play()
+            pygame.mixer.stop()
                 # death_count += 1
             pygame.time.delay(2000)
             for obstacle in self.obstacle_group:

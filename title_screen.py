@@ -12,6 +12,9 @@ class Title(State):
     def __init__(self,game):
         self.game = game
         State.__init__(self,game)
+
+        self.music = MENU_MUSIC
+        self.music.play(loops=-1)
         
         self.menu_options = {0:'one',1:'two',2:'three',3:'four',4:'help',5:'credits'}
         self.index = 0

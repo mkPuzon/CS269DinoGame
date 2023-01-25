@@ -420,7 +420,7 @@ class GroundObstacle1_1(pygame.sprite.Sprite):
 
 class Mine2(pygame.sprite.Sprite):
     X_POS = SCREEN_W + 100
-    Y_POS = GROUND_LOCATION + 90
+    Y_POS = GROUND_LOCATION + 100
     def __init__(self,images, groups):
         super().__init__(groups)
         for image in images:
@@ -440,7 +440,7 @@ class Mine2(pygame.sprite.Sprite):
     def draw(self, SCREEN):
         if self.index >= 20:
             self.index = 0
-        SCREEN.blit(pygame.transform.scale(self.image[self.index//10], (80,80)), self.rect)
+        SCREEN.blit(pygame.transform.scale(self.image[self.index//10], (70,70)), self.rect)
         self.index += 1
 
 class GroundObstacle1_1(pygame.sprite.Sprite):
