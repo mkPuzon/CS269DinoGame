@@ -22,6 +22,7 @@ JUMPING = pygame.image.load("Assets/Dino/defaultJump.png")
 DUCKING = [pygame.image.load("Assets/Dino/defaultDuck1.png"),
            pygame.image.load("Assets/Dino/defaultDuck2.png")]
 DEAD = pygame.image.load("Assets/Dino/defaultDead.png")
+CACTUS2 = pygame.image.load("Assets/GroundObst/cactus2.png")
 SMALL_OBST = [pygame.image.load("Assets/GroundObst/smallCactus.png"),
                 pygame.image.load("Assets/GroundObst/smallCactus.png"),
                 pygame.image.load("Assets/GroundObst/smallCactus.png")]

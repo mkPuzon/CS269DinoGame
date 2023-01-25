@@ -20,12 +20,14 @@ class Player_1(pygame.sprite.Sprite):
         self.rect.y = self.Y_POS
 
         self.jump_cooldown = 0
+        self.down_cooldown = 0
         self.step_index = 0
         self.jump_vel = self.JUMP_VEL
 
         self.dino_duck = False
         self.dino_run = True
         self.dino_jump = False
+        self.dino_down = False
 
         self.duck_imgs = DUCKING
         self.run_imgs = RUNNING
@@ -48,23 +50,31 @@ class Player_1(pygame.sprite.Sprite):
 
         if self.jump_cooldown != 0:
             self.jump_cooldown -= 1
+        
+        if self.down_cooldown != 0:
+            self.down_cooldown -= 1
 
         if self.step_index >= 10:
             self.step_index = 0
-
+        
         if actions['up'] and not self.dino_jump and self.jump_cooldown == 0:
             JUMP_SOUND.play()
             self.dino_duck = False
             self.dino_run = False
             self.dino_jump = True
+        if actions['down'] and self.dino_jump and self.jump_vel > -self.JUMP_VEL:
+            self.dino_down = True
+    
         elif actions['down'] and not self.dino_jump:
             self.dino_duck = True
             self.dino_run = False
             self.dino_jump = False
+            self.dino_down = False
         elif not (self.dino_jump or actions['down']):
             self.dino_duck = False
             self.dino_run = True
             self.dino_jump = False
+            self.dino_down = False
     
 
     def duck(self):
@@ -88,11 +98,18 @@ class Player_1(pygame.sprite.Sprite):
         self.mask = pygame.mask.from_surface(self.image)
         self.jump_cooldown = 2
         if self.dino_jump:
-            self.rect.y -= self.jump_vel * 4
-            self.jump_vel -= 0.8
+            
+            if self.dino_down:
+                self.rect.y -= self.jump_vel * 4
+                self.jump_vel -= 1.4
+            else:
+                self.rect.y -= self.jump_vel * 4
+                self.jump_vel -= 0.8
+            
         if self.jump_vel < -self.JUMP_VEL:
             self.dino_jump = False
-            self.jump_vel = self.JUMP_VEL
+            self.jump_vel = self.JUMP_VEL  
+
 
     def draw(self,display):
         display.blit(self.image, self.rect)
@@ -118,6 +135,7 @@ class Player_2(pygame.sprite.Sprite):
         self.dino_duck = False
         self.dino_run = True
         self.dino_jump = False
+        self.dino_down = False
 
         self.duck_imgs = DUCKING1
         self.run_imgs = RUNNING1
@@ -150,14 +168,18 @@ class Player_2(pygame.sprite.Sprite):
             self.dino_duck = False
             self.dino_run = False
             self.dino_jump = True
+        if actions['down'] and self.dino_jump and self.jump_vel > -self.JUMP_VEL:
+            self.dino_down = True
         elif actions['down'] and not self.dino_jump:
             self.dino_duck = True
             self.dino_run = False
             self.dino_jump = False
+            self.dino_down = False
         elif not (self.dino_jump or actions['down']):
             self.dino_duck = False
             self.dino_run = True
             self.dino_jump = False
+            self.dino_down = False
     
 
     def duck(self):
@@ -181,8 +203,12 @@ class Player_2(pygame.sprite.Sprite):
         self.mask = pygame.mask.from_surface(self.image)
         self.jump_cooldown = 2
         if self.dino_jump:
-            self.rect.y -= self.jump_vel * 4
-            self.jump_vel -= 0.8
+            if self.dino_down:
+                self.rect.y -= self.jump_vel * 4
+                self.jump_vel -= 1.4
+            else:
+                self.rect.y -= self.jump_vel * 4
+                self.jump_vel -= 0.8
         if self.jump_vel < -self.JUMP_VEL:
             self.dino_jump = False
             self.jump_vel = self.JUMP_VEL
@@ -211,6 +237,7 @@ class Player_3(pygame.sprite.Sprite):
         self.dino_duck = False
         self.dino_run = True
         self.dino_jump = False
+        self.dino_down = False
 
         self.duck_imgs = DUCKING2
         self.run_imgs = RUNNING2
@@ -243,14 +270,20 @@ class Player_3(pygame.sprite.Sprite):
             self.dino_duck = False
             self.dino_run = False
             self.dino_jump = True
+        
+        if actions['down'] and self.dino_jump and self.jump_vel > -self.JUMP_VEL:
+            self.dino_down = True
+        
         elif actions['down'] and not self.dino_jump:
             self.dino_duck = True
             self.dino_run = False
             self.dino_jump = False
+            self.dino_down = False
         elif not (self.dino_jump or actions['down']):
             self.dino_duck = False
             self.dino_run = True
             self.dino_jump = False
+            self.dino_down = False
     
 
     def duck(self):
@@ -274,8 +307,12 @@ class Player_3(pygame.sprite.Sprite):
         self.mask = pygame.mask.from_surface(self.image)
         self.jump_cooldown = 2
         if self.dino_jump:
-            self.rect.y -= self.jump_vel * 4
-            self.jump_vel -= 0.8
+            if self.dino_down:
+                self.rect.y -= self.jump_vel * 4
+                self.jump_vel -= 1.4
+            else:
+                self.rect.y -= self.jump_vel * 4
+                self.jump_vel -= 0.8
         if self.jump_vel < -self.JUMP_VEL:
             self.dino_jump = False
             self.jump_vel = self.JUMP_VEL
@@ -304,6 +341,7 @@ class Player_4(pygame.sprite.Sprite):
         self.dino_duck = False
         self.dino_run = True
         self.dino_jump = False
+        self.dino_down = False
 
         self.duck_imgs = DUCKING3
         self.run_imgs = RUNNING3
@@ -336,14 +374,20 @@ class Player_4(pygame.sprite.Sprite):
             self.dino_duck = False
             self.dino_run = False
             self.dino_jump = True
+        
+        if actions['down'] and self.dino_jump and self.jump_vel > -self.JUMP_VEL:
+            self.dino_down = True
+        
         elif actions['down'] and not self.dino_jump:
             self.dino_duck = True
             self.dino_run = False
             self.dino_jump = False
+            self.dino_down = False
         elif not (self.dino_jump or actions['down']):
             self.dino_duck = False
             self.dino_run = True
             self.dino_jump = False
+            self.dino_down = False
     
 
     def duck(self):
@@ -367,8 +411,12 @@ class Player_4(pygame.sprite.Sprite):
         self.mask = pygame.mask.from_surface(self.image)
         self.jump_cooldown = 2
         if self.dino_jump:
-            self.rect.y -= self.jump_vel * 4
-            self.jump_vel -= 0.8
+            if self.dino_down:
+                self.rect.y -= self.jump_vel * 4
+                self.jump_vel -= 1.4
+            else:
+                self.rect.y -= self.jump_vel * 4
+                self.jump_vel -= 0.8
         if self.jump_vel < -self.JUMP_VEL:
             self.dino_jump = False
             self.jump_vel = self.JUMP_VEL
@@ -382,10 +430,11 @@ class GroundObstacle(pygame.sprite.Sprite):
     def __init__(self,image, groups):
         super().__init__(groups)
         self.image = image.convert_alpha()
+        self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.rect.y = self.Y_POS
         self.rect.x = self.X_POS
-        self.mask = pygame.mask.from_surface(self.image)
+        
 
     def update(self,game_speed):
         self.rect.x -= game_speed
@@ -505,7 +554,7 @@ class FlyingObstacle(pygame.sprite.Sprite):
         self.index = 0
 
     def update(self,game_speed):
-        self.rect.x -= game_speed
+        self.rect.x -= game_speed*1.2
         if self.rect.x < -200:
             self.kill()
 

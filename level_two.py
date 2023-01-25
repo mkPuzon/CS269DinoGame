@@ -39,9 +39,10 @@ class Level_Two(State):
 
         self.update_speed()
         self.player.update(actions)
+        self.check_collision()
         self.generate_obstacles()
         self.update_obstacles(self.game_speed)
-        self.check_collision()
+        
 
         # self.game.reset_keys()
         clock.tick(30)

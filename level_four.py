@@ -37,12 +37,13 @@ class Level_Four(State):
         if actions['tab']:
             new_state = Pause(self.game)
             new_state.enter_state()
-
+        
+        self.check_collision()
         self.update_speed()
         self.player.update(actions)
         self.generate_obstacles()
         self.update_obstacles(self.game_speed)
-        self.check_collision()
+        
 
         # self.game.reset_keys()
         clock.tick(30)
