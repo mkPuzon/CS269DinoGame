@@ -24,8 +24,7 @@ class Help(State):
     
     def update(self,clock,actions):
         if actions['tab']:
-           while len(self.game.state_stack) > 1:
-                self.game.state_stack.pop() 
+            self.game.state_stack.pop() 
         self.game.reset_keys()
 
     def render(self,display):

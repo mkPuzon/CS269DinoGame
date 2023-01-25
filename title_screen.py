@@ -28,7 +28,7 @@ class Title(State):
         self.one_unlocked = True
         self.two_unlocked = False
         self.three_unlocked = False
-        self.three_unlocked = False
+        self.four_unlocked = False
 
         
         #Cursor Images
@@ -44,6 +44,7 @@ class Title(State):
     def update(self,delta_time,actions):
 
         self.update_cursor(actions)
+        self.check_to_unlock()
         if actions['start']:
             self.select_sound()
             self.manage_transitions()
@@ -66,11 +67,9 @@ class Title(State):
         display.blit(self.cursor_image,self.cursor_rect)
 
         #draw buttons to screen
-        self.level_one.draw_button(display)
-        self.level_two.draw_button(display)
-        self.level_three.draw_button(display)
+        self.draw_buttons(display)
+
         self.help.draw_button(display)
-        self.level_four.draw_button(display)
         self.credits.draw_button(display)
 
     def manage_transitions(self):
@@ -78,14 +77,19 @@ class Title(State):
             new_state = Level_One(self.game)
             new_state.enter_state()
         if self.menu_options[self.index] == "two":
-            new_state = Level_Two(self.game)
-            new_state.enter_state()
+
+            if self.two_unlocked:
+                new_state = Level_Two(self.game)
+                new_state.enter_state()
         if self.menu_options[self.index] == "three":
-            new_state = Level_Three(self.game)
-            new_state.enter_state()
+            
+            if self.three_unlocked:
+                new_state = Level_Three(self.game)
+                new_state.enter_state()
         if self.menu_options[self.index] == "four":
-            new_state = Level_Four(self.game)
-            new_state.enter_state()
+            if self.four_unlocked:
+                new_state = Level_Four(self.game)
+                new_state.enter_state()
         if self.menu_options[self.index] == "help":
             new_state = Help(self.game)
             new_state.enter_state()
@@ -108,11 +112,31 @@ class Title(State):
     def select_sound(self):
         pygame.mixer.Sound.play(self.select)
 
-    def draw_button(self,display):
+    def draw_buttons(self,display):
+        self.level_one.draw_button(display)
+
         if self.two_unlocked == False:
             self.level_two.draw_button(display,False)
+        if self.two_unlocked == True:
+            self.level_two.draw_button(display)
+
+        if self.three_unlocked == False:
+            self.level_three.draw_button(display,False)
+        if self.three_unlocked == True:
+            self.level_three.draw_button(display)
+
+        if self.four_unlocked == False:
+            self.level_four.draw_button(display,False)
+        if self.four_unlocked == True:
+            self.level_four.draw_button(display)
         
     
     
     def check_to_unlock(self):
-        pass
+        if self.game.lvl_one_score > 500:
+            self.two_unlocked = True
+        if self.game.lvl_two_score > 500:
+            self.three_unlocked = True
+        if self.game.lvl_three_score > 500:
+            self.four_unlocked = True
+        
