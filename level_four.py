@@ -8,8 +8,8 @@ class Level_Four(State):
     def __init__(self, game):
         self.game = game
         State.__init__(self,game)
-        # self.music = SPACE_MUSIC
-        # self.music.play(loops=-1)
+        self.music = SPACE_MUSIC
+        self.music.play(loops=-1)
 
         #points variable
         self.points = 0

@@ -8,7 +8,7 @@ class Level_One(State):
     def __init__(self, game):
         self.game = game
         State.__init__(self,game)
-        self.music = MENU_MUSIC
+        self.music = DEFULT_MUSIC
         self.music.play(loops=-1)
         
         #points variable
