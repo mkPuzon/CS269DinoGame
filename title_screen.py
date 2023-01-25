@@ -2,6 +2,7 @@ from state import State
 from v3Classes import *
 from v3Constants import *
 from level_one import Level_One
+from level_two import Level_Two
 from help import Help
 
 class Title(State):
@@ -26,8 +27,6 @@ class Title(State):
         self.cursor_ypos = self.level_one.y
         self.cursor_rect.x,self.cursor_rect.y = self.level_one.x - 120, self.cursor_ypos
 
-        
-
     def update(self,delta_time,actions):
         self.update_cursor(actions)
         if actions['start']:
@@ -38,6 +37,14 @@ class Title(State):
         #Draw buttons in this function
         display.fill('white')
         self.game.draw_text("Dino  Game",50,self.game.window,self.game.screen_width//2,150)
+        
+        str_score_one = "LVL 1  HIGH  SCORE   "+str(self.game.lvl_one_score)
+        str_score_two = "LVL 2  HIGH  SCORE   "+str(self.game.lvl_two_score)
+        
+        self.game.draw_text(str_score_one,30,self.game.window,self.game.screen_width//4,350)
+        self.game.draw_text(str_score_two,30,self.game.window,self.game.screen_width//4,400)
+
+
         self.game.draw_text("Use  up  and  down  keys  to  navigate  the  menu",50,self.game.window,self.game.screen_width//2,225)
         
         display.blit(self.cursor_image,self.cursor_rect)
@@ -55,7 +62,8 @@ class Title(State):
             new_state = Level_One(self.game)
             new_state.enter_state()
         if self.menu_options[self.index] == "two":
-            pass
+            new_state = Level_Two(self.game)
+            new_state.enter_state()
         if self.menu_options[self.index] == "three":
             pass
         if self.menu_options[self.index] == "four":

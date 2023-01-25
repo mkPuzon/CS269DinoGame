@@ -4,11 +4,10 @@ from v3Constants import *
 from pause import Pause
 from game_over import Game_Over
 
-class Level_One(State):
+class Level_Two(State):
     def __init__(self, game):
         self.game = game
         State.__init__(self,game)
-
         #points variable
         self.points = 0
 
@@ -17,16 +16,16 @@ class Level_One(State):
         self.obstacle_group = pygame.sprite.Group()
 
         #Player Initialization
-        self.player = Player_1(self.player_group)
+        self.player = Player_2(self.player_group)
         self.game_speed = 14
 
-        #Ground Initialization
         self.x_pos_bg = 0
         self.y_pos_bg = GROUND_LOCATION + 100
-        self.ground_img = GROUND.convert_alpha()
+        self.ground_img = GROUND2.convert_alpha()
         self.ground_image_width = self.ground_img.get_width()
+        
         #Backdrop  Initialization
-        self.backdrop_img = BACKDROP.convert_alpha()
+        self.backdrop_img = BACKDROP2.convert_alpha()
         self.backdrop_image_width = self.backdrop_img.get_width()
         self.x_pos_backdrop = 0
         self.y_pos_backdrop = 115
@@ -77,11 +76,11 @@ class Level_One(State):
     def generate_obstacles(self):
         if len(self.obstacle_group) == 0:
             if randint(0,2) == 0:
-                new_obst = GroundObstacle(SMALL_OBST[0],self.obstacle_group)
+                new_obst = GroundObstacle(SMALL_OBST2[0],self.obstacle_group)
             elif randint(0,2) == 1:
-                new_obst = GroundObstacle(LARGE_OBST[0],self.obstacle_group)
+                new_obst = GroundObstacle(LARGE_OBST2[0],self.obstacle_group)
             elif randint(0,2) == 2:
-                new_obst = FlyingObstacle(FLYING_OBST,self.obstacle_group)
+                new_obst = FlyingObstacle(FLYING_OBST2,self.obstacle_group)
 
     def update_obstacles(self,game_speed):
         for obstacle in self.obstacle_group:
@@ -90,8 +89,11 @@ class Level_One(State):
     def render_obstacles(self,display):
         for obstacle in self.obstacle_group:
             obstacle.draw(display)
+
+    def get_score(self):
+        return self.points
     
-   
+
     def check_collision(self):
         # for obstacle in self.obstacle_group:
         #     # check collisions
@@ -107,18 +109,16 @@ class Level_One(State):
                     #interem return to menu
             self.game_over()
     
-    def check_score_lv1(self):
+    def check_score_lv2(self):
         if self.points > self.game.lvl_one_score:
-           self.game.lvl_one_score = self.points
+           self.game.lvl_two_score = self.points
 
     def game_over(self):
         #load new state here
-        self.check_score_lv1()
+        self.check_score_lv2()
         new_state = Game_Over(self.game)
         new_state.enter_state()
         
     
     def get_score(self):
         return self.points
-
-

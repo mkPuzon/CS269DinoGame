@@ -20,6 +20,11 @@ class Game():
       self.font = 'Assets/ARCADECLASSIC.TTF'
     #   self.dt, self.prev_time = 0,0
       self.BLACK,self.WHITE = (0,0,0),(255,255,255)
+      self.lvl_one_score = 0
+      self.lvl_two_score = 0
+      self.lvl_three_score = 0
+      self.lvl_four_score = 0
+
       #This is a stack that keeps track of the game states
 
       #initialize gamespeed
