@@ -559,9 +559,10 @@ class FlyingObstacle3(pygame.sprite.Sprite):
         SCREEN.blit(self.image, self.rect)
 
 class Item1(pygame.sprite.Sprite):
-    def __init__(self,images, player, groups):
+    def __init__(self,images, player,groups):
         super().__init__(groups)
         self.player = player
+        self.bullet_group = pygame.sprite.Group()
         self.image = pygame.transform.scale(images[0],(40,40))
         self.active_image = pygame.transform.scale(images[1],(40,40))
         self.rect = self.image.get_rect()
@@ -580,6 +581,23 @@ class Item1(pygame.sprite.Sprite):
 
     def draw(self,SCREEN):
         SCREEN.blit(self.image,self.rect)
+
+    def shoot(self):
+        shot = Bullet1((self.rect.centerx,self.rect.centery), self.bullet_group)
+
+class Bullet1(pygame.sprite.Sprite):
+    def __init__(self,pos,groups):
+        super().__init__(groups)
+        self.image = BULLET1
+        self.rect = self.image.get_rect(midbottom=pos)
+
+        self.speed = 5
+    
+    def update(self):
+        self.rect.x += self.speed
+
+    def draw(self,display):
+        display.blit(self.image,self.rect)
 
 class Button():
 
