@@ -32,7 +32,7 @@ class Help(State):
         display.fill('white')
         self.game.draw_text("H E L P",50,self.game.window,self.game.screen_width//2,150)
         self.game.draw_text("PRESS  TAB  TO  RETURN  TO  MENU   FROM   HELP",50,self.game.window,self.game.screen_width//2,200)
-        self.game.draw_text("IN A LEVEL, PRESS  TAB  TO PAUSE",50,self.game.window,self.game.screen_width//2,250)
+        self.game.draw_text("IN A LEVEL PRESS  TAB  TO PAUSE",50,self.game.window,self.game.screen_width//2,250)
         self.game.draw_text("PRESS  ESCAPE  TO  QUIT  THE  GAME",50,self.game.window,self.game.screen_width//2,300)
         self.game.draw_text("UP ARROW TO JUMP DOWN ARROW TO DUCK SPACE TO SHOOT",50,self.game.window,self.game.screen_width//2,350)
         self.game.draw_text("PRESS  ENTER  TO  SELECT  A  BUTTON",50,self.game.window,self.game.screen_width//2,400)

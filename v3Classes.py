@@ -389,7 +389,7 @@ class GroundObstacle(pygame.sprite.Sprite):
 
     def update(self,game_speed):
         self.rect.x -= game_speed
-        if self.rect.x < -100:
+        if self.rect.x < -200:
             self.kill()
 
     def draw(self,display):
@@ -409,7 +409,7 @@ class GroundObstacle1(pygame.sprite.Sprite):
 
     def update(self,game_speed):
         self.rect.x -= game_speed
-        if self.rect.x < -100:
+        if self.rect.x < -200:
             self.kill()
 
     def draw(self,SCREEN):
@@ -434,7 +434,7 @@ class Mine2(pygame.sprite.Sprite):
 
     def update(self,game_speed):
         self.rect.x -= game_speed
-        if self.rect.x < -100:
+        if self.rect.x < -200:
             self.kill()
 
     def draw(self, SCREEN):
@@ -457,7 +457,7 @@ class GroundObstacle1_T(pygame.sprite.Sprite):
 
     def update(self,game_speed):
         self.rect.x -= game_speed
-        if self.rect.x < -100:
+        if self.rect.x < -200:
             self.kill()
 
     def draw(self,SCREEN):
@@ -482,7 +482,7 @@ class Mine2(pygame.sprite.Sprite):
 
     def update(self,game_speed):
         self.rect.x -= game_speed
-        if self.rect.x < -100:
+        if self.rect.x < -200:
             self.kill()
 
     def draw(self, SCREEN):
@@ -506,7 +506,7 @@ class FlyingObstacle(pygame.sprite.Sprite):
 
     def update(self,game_speed):
         self.rect.x -= game_speed
-        if self.rect.x < 0:
+        if self.rect.x < -200:
             self.kill()
 
     def draw(self, SCREEN):
@@ -530,7 +530,7 @@ class FlyingObstacle1(pygame.sprite.Sprite):
 
     def update(self,game_speed):
         self.rect.x -= game_speed
-        if self.rect.x < 0:
+        if self.rect.x < -200:
             self.kill()
 
     def draw(self, SCREEN):
@@ -554,7 +554,7 @@ class FlyingObstacle2(pygame.sprite.Sprite):
 
     def update(self,game_speed):
         self.rect.x -= game_speed
-        if self.rect.x < -100:
+        if self.rect.x < -200:
             self.kill()
 
     def draw(self, SCREEN):
@@ -578,7 +578,7 @@ class FlyingObstacle3(pygame.sprite.Sprite):
 
     def update(self,game_speed):
         self.rect.x -= game_speed
-        if self.rect.x < 0:
+        if self.rect.x < -200:
             self.kill()
 
     def draw(self, SCREEN):

@@ -4,7 +4,7 @@ pygame.mixer.init()
 
 pygame.init()
 # Screen dimentions
-SCREEN_W = 1200
+SCREEN_W = 1500
 SCREEN_H = 600
 
 GROUND_LOCATION = 300
