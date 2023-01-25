@@ -16,7 +16,7 @@ class Level_Four(State):
         self.obstacle_group = pygame.sprite.Group()
 
         #Player Initialization
-        self.player = Player_3(self.player_group)
+        self.player = Player_4(self.player_group)
         self.game_speed = 14
 
         #Ground Initialization

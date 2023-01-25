@@ -2,6 +2,8 @@ from state import State
 from v3Classes import *
 from v3Constants import *
 from pause import Pause
+from game_over import Game_Over
+
 class Level_One(State):
     def __init__(self, game):
         self.game = game
@@ -17,7 +19,7 @@ class Level_One(State):
         self.obstacle_group = pygame.sprite.Group()
 
         #Player Initialization
-        self.player = Player_0(self.player_group)
+        self.player = Player_1(self.player_group)
         self.game_speed = 14
 
         #Ground Initialization
@@ -104,7 +106,8 @@ class Level_One(State):
     def render_obstacles(self,display):
         for obstacle in self.obstacle_group:
             obstacle.draw(display)
-
+    
+   
     def check_collision(self):
         # for obstacle in self.obstacle_group:
         #     # check collisions
@@ -118,6 +121,20 @@ class Level_One(State):
                     obstacle.kill()
             pygame.mixer.stop()
                     #interem return to menu
-            while len(self.game.state_stack) > 1:
-                self.game.state_stack.pop()
+            self.game_over()
+    
+    def check_score_lv1(self):
+        if self.points > self.game.lvl_one_score:
+           self.game.lvl_one_score = self.points
+
+    def game_over(self):
+        #load new state here
+        self.check_score_lv1()
+        new_state = Game_Over(self.game)
+        new_state.enter_state()
+        
+    
+    def get_score(self):
+        return self.points
+
 

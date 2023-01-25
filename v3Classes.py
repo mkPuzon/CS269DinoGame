@@ -4,7 +4,8 @@ from v3Constants import *
 from random import randint
 
 
-class Player_0(pygame.sprite.Sprite):
+
+class Player_1(pygame.sprite.Sprite):
     # player constants
     X_POS = 100
     Y_POS = GROUND_LOCATION
@@ -41,7 +42,7 @@ class Player_0(pygame.sprite.Sprite):
         
         display.blit(self.image, self.rect)
     
-    
+
 
     def update(self,actions):
 
@@ -96,7 +97,7 @@ class Player_0(pygame.sprite.Sprite):
     def draw(self,display):
         display.blit(self.image, self.rect)
 
-class Player_1(pygame.sprite.Sprite):
+class Player_2(pygame.sprite.Sprite):
     # player constants
     X_POS = 100
     Y_POS = GROUND_LOCATION
@@ -189,7 +190,7 @@ class Player_1(pygame.sprite.Sprite):
     def draw(self,SCREEN):
         SCREEN.blit(self.image, self.rect)
 
-class Player_2(pygame.sprite.Sprite):
+class Player_3(pygame.sprite.Sprite):
     # player constants
     X_POS = 100
     Y_POS = GROUND_LOCATION
@@ -282,7 +283,7 @@ class Player_2(pygame.sprite.Sprite):
     def draw(self,SCREEN):
         SCREEN.blit(self.image, self.rect)
 
-class Player_3(pygame.sprite.Sprite):
+class Player_4(pygame.sprite.Sprite):
     # player constants
     X_POS = 100
     Y_POS = GROUND_LOCATION
@@ -391,31 +392,8 @@ class GroundObstacle(pygame.sprite.Sprite):
         if self.rect.x < -100:
             self.kill()
 
-    def draw(self,SCREEN):
-        SCREEN.blit(self.image,self.rect)
-
-class GroundObstacle1(pygame.sprite.Sprite):
-    X_POS = SCREEN_W + 100
-    Y_POS = GROUND_LOCATION + 75
-    def __init__(self,images,groups):
-        super().__init__(groups)
-        self.image = images
-        self.rect = self.image[0].get_rect()
-        self.rect.y = self.Y_POS
-        self.rect.x = self.X_POS
-        self.mask = pygame.mask.from_surface(self.image[0])
-        self.index = 0
-
-    def update(self,game_speed):
-        self.rect.x -= game_speed
-        if self.rect.x < -100:
-            self.kill()
-
-    def draw(self,SCREEN):
-        if self.index >= 20:
-            self.index = 0
-        SCREEN.blit(pygame.transform.scale(self.image[self.index//10], (50,50)), self.rect)
-        self.index += 1
+    def draw(self,display):
+        display.blit(self.image,self.rect)
 
 class GroundObstacle1_1(pygame.sprite.Sprite):
     X_POS = SCREEN_W + 100
@@ -465,6 +443,54 @@ class Mine2(pygame.sprite.Sprite):
         SCREEN.blit(pygame.transform.scale(self.image[self.index//10], (80,80)), self.rect)
         self.index += 1
 
+class GroundObstacle1_1(pygame.sprite.Sprite):
+    X_POS = SCREEN_W + 100
+    Y_POS = GROUND_LOCATION + 15
+    def __init__(self,image,groups):
+        super().__init__(groups)
+        self.image = image
+        self.rect = self.image.get_rect()
+        self.rect.y = self.Y_POS
+        self.rect.x = self.X_POS
+        self.mask = pygame.mask.from_surface(self.image)
+        self.index = 0
+
+    def update(self,game_speed):
+        self.rect.x -= game_speed
+        if self.rect.x < -100:
+            self.kill()
+
+    def draw(self,SCREEN):
+        if self.index >= 20:
+            self.index = 0
+        SCREEN.blit(pygame.transform.scale(self.image, (100,100)), self.rect)
+        self.index += 1
+
+class Mine2(pygame.sprite.Sprite):
+    X_POS = SCREEN_W + 100
+    Y_POS = GROUND_LOCATION + 93
+    def __init__(self,images, groups):
+        super().__init__(groups)
+        for image in images:
+            image.convert_alpha()
+        self.image = images
+        self.rect = self.image[0].get_rect()
+        self.rect.y = self.Y_POS
+        self.rect.x = self.X_POS
+        self.mask = pygame.mask.from_surface(self.image[0])
+        self.index = 0
+
+    def update(self,game_speed):
+        self.rect.x -= game_speed
+        if self.rect.x < -100:
+            self.kill()
+
+    def draw(self, SCREEN):
+        if self.index >= 20:
+            self.index = 0
+        SCREEN.blit(pygame.transform.scale(self.image[self.index//10], (80,80)), self.rect)
+        self.index += 1
+
 class FlyingObstacle(pygame.sprite.Sprite):
     X_POS = SCREEN_W + randint(0,500)
     Y_POS = GROUND_LOCATION - 8
@@ -491,7 +517,7 @@ class FlyingObstacle(pygame.sprite.Sprite):
 
 class FlyingObstacle1(pygame.sprite.Sprite):
     X_POS = SCREEN_W + randint(0,500)
-    Y_POS = GROUND_LOCATION - 10
+    Y_POS = GROUND_LOCATION - 8
 
     def __init__(self,image, groups):
         super().__init__(groups)
