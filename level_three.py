@@ -9,6 +9,8 @@ class Level_Three(State):
         self.game = game
         State.__init__(self,game)
         self.music = WWI_MUSIC
+        self.shoot = TANK_SHOT_SOUND
+        self.destroyed = DESTROYED
         self.music.play(loops=-1)
 
         #points variable
@@ -44,7 +46,7 @@ class Level_Three(State):
 
         if actions['space'] and len(self.bullet_group) == 0:
             self.bullet_group.add(Bullet(self.player.rect.centerx,self.player.rect.centery,self.bullet_group))
-        
+            self.shoot.play()
         self.player.update(actions)
         self.check_collision()
         self.check_bullet_collisions()
@@ -131,7 +133,9 @@ class Level_Three(State):
             self.game_over()
     
     def check_bullet_collisions(self):
-        pygame.sprite.groupcollide(self.bullet_group,self.obstacle_group,True,True,pygame.sprite.collide_mask)
+        if pygame.sprite.groupcollide(self.bullet_group,self.obstacle_group,True,True,pygame.sprite.collide_mask):
+            self.destroyed.play()
+            
 
 
     def game_over(self):

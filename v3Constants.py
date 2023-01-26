@@ -103,7 +103,7 @@ DEATH_SOUND = pygame.mixer.Sound("Assets/Sound/death.wav")
 GUNSHOT_SOUND = pygame.mixer.Sound("Assets/Sound/gunshot.wav")
 TANK_SHOT_SOUND = pygame.mixer.Sound("Assets/Sound/TankGunShot.wav")
 PLANE_SOUND = pygame.mixer.Sound("Assets/Sound/plane.wav")
-
+DESTROYED = pygame.mixer.Sound("Assets/Sound/obst_destroyed.wav")
 #Bullet Asset
 
 BULLET = pygame.image.load("Assets/Other/bullet.png")
