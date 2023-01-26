@@ -46,7 +46,6 @@ class Player_1(pygame.sprite.Sprite):
 
 
     def update(self,actions):
-
         if self.jump_cooldown != 0:
             self.jump_cooldown -= 1
         
@@ -109,7 +108,6 @@ class Player_1(pygame.sprite.Sprite):
             self.dino_jump = False
             self.jump_vel = self.JUMP_VEL  
 
-
     def draw(self,display):
         display.blit(self.image, self.rect)
 
@@ -122,11 +120,12 @@ class Player_2(pygame.sprite.Sprite):
     def __init__(self, groups):
         super().__init__(groups)
         self.image = JUMPING1.convert_alpha()
-        self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
+        self.weapon_images = ITEM1
         self.rect.x = self.X_POS
         self.rect.y = self.Y_POS
-
+        self.mask = pygame.mask.from_surface(self.image)
+        
         self.jump_cooldown = 0
         self.step_index = 0
         self.jump_vel = self.JUMP_VEL
@@ -135,12 +134,12 @@ class Player_2(pygame.sprite.Sprite):
         self.dino_run = True
         self.dino_jump = False
         self.dino_down = False
+        self.shoot = False
 
         self.duck_imgs = DUCKING1
         self.run_imgs = RUNNING1
         self.jump_img = JUMPING1
         self.dead_img = DEAD1
-
 
     def render_player(self,display):
         if self.dino_duck:
@@ -151,7 +150,11 @@ class Player_2(pygame.sprite.Sprite):
             self.jump()
         
         display.blit(self.image, self.rect)
-    
+
+        if self.dino_duck:
+            display.blit(pygame.transform.scale(self.weapon_images[0], (40,40)), (self.rect.x + 75,self.rect.y + 90))
+        else:
+            display.blit(pygame.transform.scale(self.weapon_images[0], (40,40)), (self.rect.x + 75,self.rect.y + 70))
     
 
     def update(self,actions):
@@ -214,6 +217,7 @@ class Player_2(pygame.sprite.Sprite):
 
     def draw(self,SCREEN):
         SCREEN.blit(self.image, self.rect)
+        
 
 class Player_3(pygame.sprite.Sprite):
     # player constants
@@ -577,7 +581,7 @@ class FlyingObstacle1(pygame.sprite.Sprite):
         self.index = 0
 
     def update(self,game_speed):
-        self.rect.x -= game_speed
+        self.rect.x -= game_speed * 1.2
         if self.rect.x < -200:
             self.kill()
 
@@ -601,7 +605,7 @@ class FlyingObstacle2(pygame.sprite.Sprite):
         self.index = 0
 
     def update(self,game_speed):
-        self.rect.x -= game_speed
+        self.rect.x -= game_speed * 1.2
         if self.rect.x < -200:
             self.kill()
 
@@ -625,53 +629,12 @@ class FlyingObstacle3(pygame.sprite.Sprite):
         self.index = 0
 
     def update(self,game_speed):
-        self.rect.x -= game_speed
+        self.rect.x -= game_speed * 1.2
         if self.rect.x < -200:
             self.kill()
 
     def draw(self, SCREEN):
         SCREEN.blit(self.image, self.rect)
-
-class Item1(pygame.sprite.Sprite):
-    def __init__(self,images, player,groups):
-        super().__init__(groups)
-        self.player = player
-        self.bullet_group = pygame.sprite.Group()
-        self.image = pygame.transform.scale(images[0],(40,40))
-        self.active_image = pygame.transform.scale(images[1],(40,40))
-        self.rect = self.image.get_rect()
-        self.rect.x = self.player.rect.centerx + 15
-        self.rect.y = self.player.rect.centery + 5
-        self.cooldown = 0
-        self.ammo = 3
-
-    def update(self):
-        self.rect.x = self.player.rect.centerx + 15
-        self.rect.y = self.player.rect.centery + 5
-        if self.player.dino_duck == True:
-            self.rect.y = self.player.rect.y + 90
-        if self.ammo == 0:
-            self.kill()
-
-    def draw(self,SCREEN):
-        SCREEN.blit(self.image,self.rect)
-
-    def shoot(self):
-        shot = Bullet1((self.rect.centerx,self.rect.centery), self.bullet_group)
-
-class Bullet1(pygame.sprite.Sprite):
-    def __init__(self,pos,groups):
-        super().__init__(groups)
-        self.image = BULLET1
-        self.rect = self.image.get_rect(midbottom=pos)
-
-        self.speed = 5
-    
-    def update(self):
-        self.rect.x += self.speed
-
-    def draw(self,display):
-        display.blit(self.image,self.rect)
 
 class Button():
     

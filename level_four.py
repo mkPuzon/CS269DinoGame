@@ -80,18 +80,38 @@ class Level_Four(State):
     
     def generate_obstacles(self):
         if len(self.obstacle_group) == 0:
-            if randint(0,2) == 0:
-                new_obst = GroundObstacle(SMALL_OBST3[0],self.obstacle_group)
-            elif randint(0,2) == 1: 
-                new_obst = GroundObstacle(LARGE_OBST3[randint(0,2)],self.obstacle_group)
-                new_obst2 = GroundObstacle(SMALL_OBST3[0],self.obstacle_group)
-                new_obst2.rect.x = new_obst.X_POS + randint(400,700)
-            elif randint(0,2) == 2:
-                new_obst = FlyingObstacle3(FLYING_OBST3,self.obstacle_group)
-            elif randint(0,1) == 1: 
-                new_obst = GroundObstacle(LARGE_OBST3[randint(0,2)],self.obstacle_group)
-                new_obst2 = GroundObstacle(LARGE_OBST3[randint(0,2)],self.obstacle_group)
-                new_obst2.rect.x = new_obst.X_POS + randint(400,1700)
+            if self.points < 2000:
+                if randint(0,2) == 0:
+                    new_obst = GroundObstacle(SMALL_OBST3[0],self.obstacle_group)
+                elif randint(0,2) == 1: 
+                    new_obst = GroundObstacle(LARGE_OBST3[2],self.obstacle_group)
+                    new_obst2 = GroundObstacle(SMALL_OBST3[0],self.obstacle_group)
+                    new_obst2.rect.x = new_obst.X_POS + randint(400,700)
+                elif randint(0,2) == 2:
+                    new_obst = FlyingObstacle3(FLYING_OBST3,self.obstacle_group)
+                elif randint(0,1) == 1: 
+                    new_obst = GroundObstacle(LARGE_OBST3[2],self.obstacle_group)
+                    new_obst2 = GroundObstacle(LARGE_OBST3[1],self.obstacle_group)
+                    new_obst2.rect.x = new_obst.X_POS + randint(400,1500)
+            elif self.points > 2000:
+                if randint(0,1) == 1: 
+                    new_obst = GroundObstacle(LARGE_OBST3[2],self.obstacle_group)
+                    new_obst2 = GroundObstacle(LARGE_OBST3[1],self.obstacle_group)
+                    new_obst2.rect.x = new_obst.X_POS + randint(100,300)
+                elif randint(0,2) == 2:
+                    new_obst = FlyingObstacle3(FLYING_OBST3,self.obstacle_group)
+                    new_obst2 = FlyingObstacle3(FLYING_OBST3,self.obstacle_group)
+                    new_obst3 = GroundObstacle(SMALL_OBST3[0],self.obstacle_group)
+                    new_obst2.rect.x = new_obst.X_POS + randint(2000,2500)
+                    new_obst3.rect.x = new_obst3.X_POS + randint(500,1000)
+                if randint(0,2) == 0:
+                    new_obst = GroundObstacle(SMALL_OBST3[0],self.obstacle_group)
+                elif randint(0,3) == 3:
+                    new_obst = GroundObstacle(LARGE_OBST3[2],self.obstacle_group)
+                    new_obst2 = GroundObstacle(LARGE_OBST3[1],self.obstacle_group)
+                    new_obst3 = GroundObstacle(LARGE_OBST3[1],self.obstacle_group)
+                    new_obst2.rect.x = new_obst.X_POS + randint(100,300)
+                    new_obst3.rect.x = new_obst2.X_POS + randint(100,300)
 
     def update_obstacles(self,game_speed):
         for obstacle in self.obstacle_group:

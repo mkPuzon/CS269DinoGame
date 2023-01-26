@@ -7,6 +7,7 @@ class Pause(State):
     def __init__(self, game):
         self.game = game
         State.__init__(self,game)
+        pygame.mixer.pause()
 
         self.menu_options = {0:'cont',1:'help',2:'title'}
         self.index = 0
@@ -54,11 +55,13 @@ class Pause(State):
     
     def manage_transitions(self):
         if self.menu_options[self.index] == "cont":
+            pygame.mixer.unpause()
             self.exit_state()
         elif self.menu_options[self.index] == 'help':
             new_state = Help(self.game)
             new_state.enter_state()
         elif self.menu_options[self.index] == 'title':
+            pygame.mixer.stop()
             while len(self.game.state_stack) > 1:
                 self.game.state_stack.pop()
     
