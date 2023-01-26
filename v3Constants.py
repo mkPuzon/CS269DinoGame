@@ -9,7 +9,7 @@ SCREEN_H = 600
 
 GROUND_LOCATION = 300
 
-#mMenu Assets
+#Menu Assets
 BUTTON1 = pygame.image.load("Assets/Buttons/button_one.png")
 CURSOR = pygame.image.load("Assets/cursor.png")
 MENU_MOVE = pygame.mixer.Sound('Assets/Sound/menu_move.wav')
@@ -103,3 +103,7 @@ DEATH_SOUND = pygame.mixer.Sound("Assets/Sound/death.wav")
 GUNSHOT_SOUND = pygame.mixer.Sound("Assets/Sound/gunshot.wav")
 TANK_SHOT_SOUND = pygame.mixer.Sound("Assets/Sound/TankGunShot.wav")
 PLANE_SOUND = pygame.mixer.Sound("Assets/Sound/plane.wav")
+
+#Bullet Asset
+
+BULLET = pygame.image.load("Assets/Other/bullet.png")

@@ -715,7 +715,28 @@ class Button():
         SCREEN.blit(text,((self.x + int(self.width/2) - int(text_len / 2)), self.y + 25))
         # return action
 
+class Bullet(pygame.sprite.Sprite):
+
+    def __init__(self,x_pos,y_pos,group):
+        super().__init__(group)
+        self.velocity = 50
+
+        self.image = BULLET.convert_alpha()
+        self.rect = self.image.get_rect()
+        self.rect.center = (x_pos,y_pos)
+        self.mask = pygame.mask.from_surface(self.image)
     
+    def update(self):
+        self.rect.x += self.velocity
+        #kills the sprite when it is offscreen
+        if(self.rect.x > SCREEN_W + 100):
+            self.kill()
+    
+    def draw(self,display):
+        display.blit(self.image,self.rect)
+
+
+
 
 
 
