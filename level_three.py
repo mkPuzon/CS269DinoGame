@@ -92,15 +92,66 @@ class Level_Three(State):
     def generate_obstacles(self):
         if len(self.obstacle_group) == 0:
             if randint(0,2) == 0:
-                new_obst = Mine2(SMALL_OBST2,self.obstacle_group)
+                if self.points < 500:
+                    new_obst = Mine2(SMALL_OBST2,self.obstacle_group)
+                    new_obst.rect.x = new_obst.X_POS+100
+                if self.points > 500 and self.points < 1000:
+                    new_obst = Mine2(SMALL_OBST2,self.obstacle_group)
+                    new_obst.rect.x = new_obst.X_POS+100
+                    new_obst2 = Mine2(SMALL_OBST2,self.obstacle_group)
+                    new_obst2.rect.x = new_obst.X_POS+200
+
+                if self.points > 1000:
+                    new_obst = Mine2(SMALL_OBST2,self.obstacle_group)
+                    new_obst.rect.x = new_obst.X_POS+100
+                    new_obst2 = Mine2(SMALL_OBST2,self.obstacle_group)
+                    new_obst2.rect.x = new_obst.X_POS+200
+                    new_obst3 = Mine2(SMALL_OBST2,self.obstacle_group)
+                    new_obst3.rect.x = new_obst.X_POS+300
+
             elif randint(0,2) == 1:
-                new_obst = GroundObstacle(LARGE_OBST2[randint(0,2)],self.obstacle_group)
-                new_obst2 = Mine2(SMALL_OBST2,self.obstacle_group)
-                new_obst2.rect.x = new_obst.X_POS + randint(400,1000)
+                if self.points < 800:
+                    new_obst = GroundObstacle(LARGE_OBST2[randint(0,2)],self.obstacle_group)
+                    new_obst2 = Mine2(SMALL_OBST2,self.obstacle_group)
+                    new_obst2.rect.x = new_obst.X_POS + randint(800,1000)
+                if self.points > 800:
+                    new_obst = GroundObstacle(LARGE_OBST2[0],self.obstacle_group)
+                    new_obst2 = GroundObstacle(LARGE_OBST2[0],self.obstacle_group)
+                    new_obst3 = GroundObstacle(LARGE_OBST2[0],self.obstacle_group)
+                    new_obst4 = GroundObstacle(LARGE_OBST2[0],self.obstacle_group)
+
+                    new_obst.rect.x = new_obst.X_POS + 200
+                    new_obst2.rect.x = new_obst.X_POS + 250
+                    new_obst3.rect.x = new_obst.X_POS + 200
+                    new_obst3.rect.y = new_obst.Y_POS - 75
+                    new_obst4.rect.x = new_obst.X_POS + 250
+                    new_obst4.rect.y = new_obst.Y_POS - 75
+
             elif randint(0,2) == 2:
-                new_obst = FlyingObstacle2(FLYING_OBST2,self.obstacle_group)
-                new_obst2 = GroundObstacle(LARGE_OBST2[randint(0,2)],self.obstacle_group)
-                new_obst2.rect.x = new_obst.X_POS + randint(400,2000)
+                if self.points < 500:
+                    new_obst = FlyingObstacle2(FLYING_OBST2,self.obstacle_group)
+                    new_obst.rect.x = new_obst.X_POS + 100
+                if self.points > 500 and self.points < 1000:
+                    new_obst = FlyingObstacle2(FLYING_OBST2,self.obstacle_group)
+                    new_obst.rect.x = new_obst.X_POS + 100
+                    new_obst2 = FlyingObstacle2(FLYING_OBST2,self.obstacle_group)
+                    new_obst2.rect.x = new_obst.X_POS + 175
+                    new_obst3 = FlyingObstacle2(FLYING_OBST2,self.obstacle_group)
+                    new_obst3.rect.x = new_obst.X_POS + 250
+                
+                if self.points > 1000:
+                    new_obst = FlyingObstacle2(FLYING_OBST2,self.obstacle_group)
+                    new_obst.rect.x = new_obst.X_POS + 100
+                    new_obst2 = FlyingObstacle2(FLYING_OBST2,self.obstacle_group)
+                    new_obst2.rect.x = new_obst.X_POS + 175
+                    new_obst3 = FlyingObstacle2(FLYING_OBST2,self.obstacle_group)
+                    new_obst3.rect.x = new_obst.X_POS + 250
+
+                    new_obst3 = GroundObstacle(LARGE_OBST2[0],self.obstacle_group)
+                    new_obst3.rect.x = new_obst.X_POS + 260
+
+                   
+
             elif randint(0,1) == 1:
                 new_obst = FlyingObstacle2(FLYING_OBST2,self.obstacle_group)
                 new_obst2 = Mine2(SMALL_OBST2,self.obstacle_group)
@@ -121,7 +172,7 @@ class Level_Three(State):
 
         if pygame.sprite.spritecollide(self.player,self.obstacle_group,False,pygame.sprite.collide_mask):
             DEATH_SOUND.play()
-            pygame.mixer.stop()
+            
             # death_count += 1
             pygame.time.delay(2000)
             for obstacle in self.obstacle_group:
