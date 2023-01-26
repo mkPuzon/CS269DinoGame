@@ -139,10 +139,10 @@ class Title(State):
     
     
     def check_to_unlock(self):
-        if self.game.lvl_one_score > -1:
+        if self.game.lvl_one_score > 1500:
             self.two_unlocked = True
-        if self.game.lvl_two_score > -1:
+        if self.game.lvl_two_score > 1500:
             self.three_unlocked = True
-        if self.game.lvl_three_score > -1:
+        if self.game.lvl_three_score > 1500:
             self.four_unlocked = True
         
