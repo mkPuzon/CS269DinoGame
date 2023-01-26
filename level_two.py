@@ -141,7 +141,6 @@ class Level_Two(State):
         # for obstacle in self.obstacle_group:
         #     # check collisions
         #     overlap_area = self.player.mask.overlap_area(obstacle.mask, (obstacle.rect.x - self.player.rect.x, obstacle.rect.y - self.player.rect.y))
-
         if pygame.sprite.spritecollide(self.player,self.obstacle_group,False,pygame.sprite.collide_mask):
             DEATH_SOUND.play()
             pygame.mixer.stop()
