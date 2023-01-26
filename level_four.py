@@ -141,7 +141,7 @@ class Level_Four(State):
         #load new state here
         pygame.mixer.stop()
         self.check_score_lv4()
-        new_state = Game_Over(self.game)
+        new_state = Game_Over(self.game,3)
         new_state.enter_state()
 
     def get_score(self):

@@ -27,11 +27,13 @@ class Player_1(pygame.sprite.Sprite):
         self.dino_run = True
         self.dino_jump = False
         self.dino_down = False
+        
+        
 
         self.duck_imgs = DUCKING
         self.run_imgs = RUNNING
         self.jump_img = JUMPING
-        self.dead_img = DEAD
+        self.dead_img = DEAD.convert_alpha()
 
     def render_player(self,display):
         if self.dino_duck:
@@ -40,7 +42,6 @@ class Player_1(pygame.sprite.Sprite):
             self.run()
         if self.dino_jump:
             self.jump()
-        
         display.blit(self.image, self.rect)
     
 
@@ -83,6 +84,8 @@ class Player_1(pygame.sprite.Sprite):
         self.rect.y = self.Y_POS
         self.step_index += 1
 
+       
+
     def run(self):
         self.image = self.run_imgs[self.step_index // 5]
         self.mask = pygame.mask.from_surface(self.image)
@@ -109,7 +112,10 @@ class Player_1(pygame.sprite.Sprite):
             self.jump_vel = self.JUMP_VEL  
 
     def draw(self,display):
+    
         display.blit(self.image, self.rect)
+        
+        
 
 class Player_2(pygame.sprite.Sprite):
     # player constants
