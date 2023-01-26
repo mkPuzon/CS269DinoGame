@@ -9,6 +9,8 @@ class Level_Two(State):
         self.game = game
         State.__init__(self,game)
         self.music = WESTERN_MUSIC
+        self.shoot = GUNSHOT_SOUND
+        self.destroyed = DESTROYED
         self.music.play(loops=-1)
         #points variable
         self.points = 0
@@ -16,6 +18,7 @@ class Level_Two(State):
         #group initialization
         self.player_group = pygame.sprite.Group()
         self.obstacle_group = pygame.sprite.Group()
+        self.bullet_group = pygame.sprite.Group()
 
         #Player Initialization
         self.player = Player_2(self.player_group)
@@ -39,10 +42,17 @@ class Level_Two(State):
             new_state.enter_state()
 
         self.update_speed()
+
+        if actions['space'] and len(self.bullet_group) == 0:
+            self.bullet_group.add(Bullet(self.player.rect.centerx,self.player.rect.centery-10,self.bullet_group))
+            self.shoot.play()
+
         self.player.update(actions)
         self.check_collision()
+        self.check_bullet_collisions()
         self.generate_obstacles()
         self.update_obstacles(self.game_speed)
+        self.bullet_group.update()
         
 
         # self.game.reset_keys()
@@ -52,6 +62,7 @@ class Level_Two(State):
         display.fill('white')
         self.move_backdrop(display)
         self.move_ground(display)
+        self.bullet_group.draw(display)
         self.player.render_player(display)
         self.render_obstacles(display)
         self.render_score(display)
@@ -157,6 +168,11 @@ class Level_Two(State):
     def check_score_lv2(self):
         if self.points > self.game.lvl_two_score:
            self.game.lvl_two_score = self.points
+
+    def check_bullet_collisions(self):
+        if pygame.sprite.groupcollide(self.bullet_group,self.obstacle_group,True,True,pygame.sprite.collide_mask):
+            self.destroyed.play()
+            
 
     def game_over(self):
         #load new state here
